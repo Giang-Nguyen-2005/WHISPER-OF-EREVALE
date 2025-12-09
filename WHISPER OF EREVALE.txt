@@ -1,0 +1,5 @@
+////////////////////// DEEP SUNDER/////////////
++BLENDTREE
++magnitude -> độ dài của vector
++GetComponentInChild
++
