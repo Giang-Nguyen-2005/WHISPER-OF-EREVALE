@@ -1,5 +1,16 @@
-////////////////////// DEEP SUNDER/////////////
+////////////////////// WHISPER OF EREVALE/////////////
 +BLENDTREE
 +magnitude -> độ dài của vector
-+GetComponentInChild
++GetComponentInChild    
++OverlapBox/OverlapBoxAll : trả về 1/ tất cả collider 2d tìm được trong hitbox
++Physics2D.OverlapBox(
+    center,     // tâm hitbox
+    size,       // kích thước hitbox (rộng, cao)
+    angle,      // góc xoay hitbox (độ)
+    layerMask,  // layer được phép va chạm
+    minDepth,   // Z nhỏ nhất
+    maxDepth    // Z lớn nhất
+)
++Mathf.Atan2(y, x): công thức lượng giác để đổi từ Vector hướng (x, y) sang Góc (Radian).
++Math.Rad2Deg: chuyển từ radian sang độ
 +
