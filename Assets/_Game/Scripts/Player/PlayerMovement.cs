@@ -9,8 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float timeDash = 0.18f;
     
     public float currentSpeed;
-    public Vector2 lastDirection;
-    
+    public Vector2 lastDirection; // Hướng nhân vật nhìn (theo chuột)
     public bool isDashing = false;
 
     private PlayerManager player;
@@ -23,12 +22,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (player.inputHandler.moveInput != Vector2.zero)
+        // Luôn cập nhật hướng nhìn dựa trên vị trí chuột
+        Vector2 lookDir = (player.inputHandler.mouseWorldPosition - (Vector2)transform.position).normalized;
+        if (lookDir != Vector2.zero)
         {
-            lastDirection = player.inputHandler.moveInput;
+            lastDirection = lookDir;
         }
 
-        if (player.inputHandler.isDashKeyDown && !isDashing)
+        if (player.inputHandler.isDashKeyDown && !isDashing && player.inputHandler.moveInput != Vector2.zero)
         {
             StartCoroutine(Dashing());
         }
@@ -46,10 +47,9 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator Dashing()
     {
         isDashing = true;
+        // Dash theo hướng phím bấm
         player.rb.linearVelocity = player.inputHandler.moveInput * dashSpeed;
-        
         player.anim.TriggerDash();
-        
         yield return new WaitForSeconds(timeDash);
         isDashing = false;
     }

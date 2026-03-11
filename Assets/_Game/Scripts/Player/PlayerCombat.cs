@@ -12,6 +12,8 @@ public class PlayerCombat : MonoBehaviour
 
     private PlayerManager player;
 
+    [SerializeField] private EnemyManager enemy;
+
     void Start()
     {
         player = GetComponent<PlayerManager>();
@@ -21,19 +23,20 @@ public class PlayerCombat : MonoBehaviour
     {
         if (player.inputHandler.isWeapon1KeyDown) weaponType = 0;
         if (player.inputHandler.isWeapon2KeyDown) weaponType = 1;
+        if (player.inputHandler.isWeapon3KeyDown) weaponType = 3;
+
 
         if (player.inputHandler.isAttackKeyDown && weaponType == 1 && Time.time > timeNextAttack)
         {
             timeNextAttack = Time.time + timeAttack;
             player.anim.TriggerAttack();
-            SpearAttack();
         }
     }
 
-    private void SpearAttack()
+    public void SpearAttack()
     {
         Vector2 positionHitBox = PositionHitBox();
-        
+
         // Chuyển thành độ
         float angle = Mathf.Atan2(player.movement.lastDirection.y, player.movement.lastDirection.x) * Mathf.Rad2Deg;
 
@@ -41,12 +44,13 @@ public class PlayerCombat : MonoBehaviour
 
         if (hitboxSpear.Length > 0)
         {
-            Debug.Log("-----------------");
-            Debug.Log("Trúng " + hitboxSpear.Length + " vật thể!");
             foreach (Collider2D target in hitboxSpear)
             {
                 if (target.gameObject == gameObject) continue;
-                Debug.Log("Đâm trúng: " + target.name);
+                if (target.TryGetComponent(out EnemyManager hitEnemy))
+                {
+                    hitEnemy.TakeDamage(30);
+                }
             }
         }
     }
@@ -55,10 +59,10 @@ public class PlayerCombat : MonoBehaviour
     {
         Vector2 lastDirection = player.movement.lastDirection;
         Vector2 possionAttack = (Vector2)transform.position + lastDirection * attackOffset;
-        
+
         if (lastDirection == Vector2.down) possionAttack -= debugHitbox;
         else if (lastDirection == Vector2.up) possionAttack += debugHitbox;
-        
+
         return possionAttack;
     }
 
@@ -72,7 +76,7 @@ public class PlayerCombat : MonoBehaviour
 
         Gizmos.color = Color.yellow;
         Vector2 positonHitBox = PositionHitBox();
-        
+
         Matrix4x4 oldMatrix = Gizmos.matrix;
         float angle = Mathf.Atan2(lastDirection.y, lastDirection.x) * Mathf.Rad2Deg;
         Gizmos.matrix = Matrix4x4.TRS(positonHitBox, Quaternion.Euler(0, 0, angle), Vector3.one);

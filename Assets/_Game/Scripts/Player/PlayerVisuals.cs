@@ -4,19 +4,15 @@ public class PlayerVisuals : MonoBehaviour
 {
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private Animator shadowAnimator;
-    public float direction;
 
     private PlayerManager player;
 
     void Start()
     {
         player = GetComponent<PlayerManager>();
-        
-        // Logic tìm Animator cũ
-        if (playerAnimator == null) 
-            playerAnimator = GameObject.Find("Visuals").GetComponent<Animator>();
-        if (shadowAnimator == null) 
-            shadowAnimator = GameObject.Find("Shadow").GetComponent<Animator>();
+        // Tự tìm Animator nếu chưa gán
+        if (playerAnimator == null) playerAnimator = transform.Find("Visuals")?.GetComponent<Animator>();
+        if (shadowAnimator == null) shadowAnimator = transform.Find("Shadow")?.GetComponent<Animator>();
     }
 
     void Update()
@@ -24,44 +20,28 @@ public class PlayerVisuals : MonoBehaviour
         if (playerAnimator == null) return;
 
         Vector2 moveInput = player.inputHandler.moveInput;
-        Vector2 lastDirection = player.movement.lastDirection;
-        float currentSpeed = player.movement.currentSpeed;
-        bool isRunning = player.inputHandler.isRunning;
+        Vector2 lookDir = player.movement.lastDirection; // Hướng nhìn theo chuột
+        float speed = moveInput.magnitude * player.movement.currentSpeed;
 
-        playerAnimator.SetFloat("Speed", moveInput.magnitude * currentSpeed, 0.03f, Time.deltaTime);
+        // 1. Tốc độ di chuyển để chuyển Idle -> Walk/Run
+        playerAnimator.SetFloat("Speed", speed, 0.03f, Time.deltaTime);
 
-        if (player.inputHandler.isJumpKeyDown)
+        // 2. Ép hướng Animator theo vị trí chuột 
+        playerAnimator.SetFloat("InputX", lookDir.x);
+        playerAnimator.SetFloat("InputY", lookDir.y);
+
+        // 3. Shadow
+        if (moveInput.magnitude > 0)
         {
-            playerAnimator.SetTrigger("Jump");
-        }
-
-        if (moveInput.magnitude > 0)//magnitude la do dai cua 1 vecto c^2 = a^2 +b^2
-        {
-            direction = isRunning ? 1 : 0.5f;
-            playerAnimator.SetFloat("InputX", lastDirection.x * direction);
-            playerAnimator.SetFloat("InputY", lastDirection.y * direction);
             shadowAnimator.SetFloat("InputX", moveInput.x);
             shadowAnimator.SetFloat("InputY", moveInput.y);
         }
-        else
-        {
-            playerAnimator.SetFloat("InputX", lastDirection.x);
-            playerAnimator.SetFloat("InputY", lastDirection.y);
-        }
 
+        if (player.inputHandler.isJumpKeyDown) playerAnimator.SetTrigger("Jump");
         playerAnimator.SetInteger("WeaponType", player.combat.weaponType);
     }
 
-    //Các hàm kích hoạt Trigger
-    public void TriggerDash() 
-    {
-        playerAnimator.SetTrigger("Dash");
-        shadowAnimator.SetTrigger("Dash Shadow");
-    }
+    public void TriggerDash() { playerAnimator.SetTrigger("Dash"); shadowAnimator.SetTrigger("Dash Shadow"); }
     public void TriggerAttack() => playerAnimator.SetTrigger("Attack");
-    public void TriggerDeath() 
-    {
-        playerAnimator.SetTrigger("Death");
-        shadowAnimator.SetTrigger("Death Shadow");
-    }
+    public void TriggerDeath() { playerAnimator.SetTrigger("Death"); shadowAnimator.SetTrigger("Death Shadow"); }
 }

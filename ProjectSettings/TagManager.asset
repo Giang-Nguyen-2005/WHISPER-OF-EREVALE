@@ -14,7 +14,7 @@ TagManager:
   - Water
   - UI
   - TargetSpear
-  - 
+  - Player
   - 
   - 
   - 
@@ -42,6 +42,12 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Enemy
+    uniqueID: 2335637309
+    locked: 0
+  - name: Player
+    uniqueID: 1322725571
     locked: 0
   m_RenderingLayers:
   - Default
