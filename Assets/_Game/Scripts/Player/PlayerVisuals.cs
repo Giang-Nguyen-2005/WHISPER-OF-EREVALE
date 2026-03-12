@@ -44,4 +44,10 @@ public class PlayerVisuals : MonoBehaviour
     public void TriggerDash() { playerAnimator.SetTrigger("Dash"); shadowAnimator.SetTrigger("Dash Shadow"); }
     public void TriggerAttack() => playerAnimator.SetTrigger("Attack");
     public void TriggerDeath() { playerAnimator.SetTrigger("Death"); shadowAnimator.SetTrigger("Death Shadow"); }
+
+    public void TriggerShoot() { playerAnimator.SetTrigger("Shoot"); }
+    public void SetShootBool(bool isShooting)
+    {
+        playerAnimator.SetBool("Shoot", isShooting);
+    }
 }

@@ -21,15 +21,38 @@ public class PlayerCombat : MonoBehaviour
 
     void Update()
     {
+        // Cập nhật loại vũ khí
         if (player.inputHandler.isWeapon1KeyDown) weaponType = 0;
         if (player.inputHandler.isWeapon2KeyDown) weaponType = 1;
         if (player.inputHandler.isWeapon3KeyDown) weaponType = 3;
 
-
+        // LOGIC CHO SPEAR
         if (player.inputHandler.isAttackKeyDown && weaponType == 1 && Time.time > timeNextAttack)
         {
             timeNextAttack = Time.time + timeAttack;
             player.anim.TriggerAttack();
+        }
+
+        // LOGIC CHO GUN
+        if (weaponType == 3)
+        {
+            // Kiểm tra nếu đang giữ chuột trái (nút 0)
+            bool isHoldingShoot = Input.GetMouseButton(0);
+
+            // Gửi trạng thái vào Animator
+            player.anim.SetShootBool(isHoldingShoot);
+
+            // Logic xử lý bắn đạn (thời gian giãn cách giữa các viên đạn)
+            if (isHoldingShoot && Time.time > timeNextAttack)
+            {
+                timeNextAttack = Time.time + 0.1f; // Tốc độ sấy
+                                                
+            }
+        }
+        else
+        {
+            // Nếu không cầm súng thì phải tắt trạng thái bắn
+            player.anim.SetShootBool(false);
         }
     }
 
