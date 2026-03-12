@@ -26,9 +26,11 @@ public class PlayerVisuals : MonoBehaviour
         // 1. Tốc độ di chuyển để chuyển Idle -> Walk/Run
         playerAnimator.SetFloat("Speed", speed, 0.03f, Time.deltaTime);
 
+        float direction =player.inputHandler.isRunning? 1 : 0.5f;
+
         // 2. Ép hướng Animator theo vị trí chuột 
-        playerAnimator.SetFloat("InputX", lookDir.x);
-        playerAnimator.SetFloat("InputY", lookDir.y);
+        playerAnimator.SetFloat("InputX", lookDir.x*direction);
+        playerAnimator.SetFloat("InputY", lookDir.y*direction);
 
         // 3. Shadow
         if (moveInput.magnitude > 0)
