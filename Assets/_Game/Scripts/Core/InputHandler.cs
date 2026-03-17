@@ -3,7 +3,7 @@ using UnityEngine;
 public class InputHandler : MonoBehaviour
 {
     public Vector2 moveInput;
-    public Vector2 mouseWorldPosition; // Thêm biến này
+    public Vector2 mouseWorldPosition;
     public bool isRunning;
     public bool isDashKeyDown;
     public bool isJumpKeyDown;
@@ -18,7 +18,7 @@ public class InputHandler : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         moveInput = new Vector2(moveX, moveY).normalized;
 
-        // Cập nhật vị trí chuột trong thế giới 2D
+        // Cập nhật vị trí chuột
         mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         isRunning = Input.GetKey(KeyCode.LeftShift);

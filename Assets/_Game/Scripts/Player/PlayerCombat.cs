@@ -45,8 +45,9 @@ public class PlayerCombat : MonoBehaviour
             // Logic xử lý bắn đạn (thời gian giãn cách giữa các viên đạn)
             if (isHoldingShoot && Time.time > timeNextAttack)
             {
-                timeNextAttack = Time.time + 0.1f; // Tốc độ sấy
-                                                
+                timeNextAttack = Time.time + 0.25f;
+                player.anim.TriggerShoot();
+                ExecuteShoot();
             }
         }
         else
@@ -89,7 +90,7 @@ public class PlayerCombat : MonoBehaviour
         return possionAttack;
     }
 
-    void OnDrawGizmos()
+    void OnDrawGizmos()// hàm vẽ hitbox hihi
     {
         if (!Application.isPlaying) return;
         if (player == null) return;
@@ -105,5 +106,18 @@ public class PlayerCombat : MonoBehaviour
         Gizmos.matrix = Matrix4x4.TRS(positonHitBox, Quaternion.Euler(0, 0, angle), Vector3.one);
         Gizmos.DrawWireCube(Vector3.zero, sizeSpearHitbox);
         Gizmos.matrix = oldMatrix;
+    }
+    private void ExecuteShoot()
+    {
+        GameObject bullet = ObjectPooler.Instance.GetPooledObject();
+        if (bullet != null)
+        {
+            bullet.transform.position = (Vector2)transform.position + player.movement.lastDirection * attackOffset;
+
+            float angle = Mathf.Atan2(player.movement.lastDirection.y, player.movement.lastDirection.x) * Mathf.Rad2Deg;
+            bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
+
+            bullet.SetActive(true);
+        }
     }
 }

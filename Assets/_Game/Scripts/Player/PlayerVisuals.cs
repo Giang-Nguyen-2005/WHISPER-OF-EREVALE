@@ -10,7 +10,6 @@ public class PlayerVisuals : MonoBehaviour
     void Start()
     {
         player = GetComponent<PlayerManager>();
-        // Tự tìm Animator nếu chưa gán
         if (playerAnimator == null) playerAnimator = transform.Find("Visuals")?.GetComponent<Animator>();
         if (shadowAnimator == null) shadowAnimator = transform.Find("Shadow")?.GetComponent<Animator>();
     }
@@ -47,7 +46,7 @@ public class PlayerVisuals : MonoBehaviour
     public void TriggerAttack() => playerAnimator.SetTrigger("Attack");
     public void TriggerDeath() { playerAnimator.SetTrigger("Death"); shadowAnimator.SetTrigger("Death Shadow"); }
 
-    public void TriggerShoot() { playerAnimator.SetTrigger("Shoot"); }
+    public void TriggerShoot() { playerAnimator.SetTrigger("TriggerShoot"); }
     public void SetShootBool(bool isShooting)
     {
         playerAnimator.SetBool("Shoot", isShooting);
