@@ -36,18 +36,32 @@ public class PlayerCombat : MonoBehaviour
         // LOGIC CHO GUN
         if (weaponType == 3)
         {
-            // Kiểm tra nếu đang giữ chuột trái (nút 0)
             bool isHoldingShoot = Input.GetMouseButton(0);
+            bool isTap = Input.GetMouseButtonDown(0);
 
-            // Gửi trạng thái vào Animator
-            player.anim.SetShootBool(isHoldingShoot);
-
-            // Logic xử lý bắn đạn (thời gian giãn cách giữa các viên đạn)
-            if (isHoldingShoot && Time.time > timeNextAttack)
+            //tap
+            if (isTap)
             {
-                timeNextAttack = Time.time + 0.25f;
+                player.anim.SetShootBool(false);
                 player.anim.TriggerShoot();
-                ExecuteShoot();
+                
+                    ExecuteShoot();
+            
+            }
+            //loop
+            else if (isHoldingShoot)
+            {
+                player.anim.SetShootBool(true);
+
+                if (Time.time > timeNextAttack)
+                {
+                    timeNextAttack = Time.time + 0.2f;
+                    ExecuteShoot();
+                }
+            }
+            else
+            {
+                player.anim.SetShootBool(false);
             }
         }
         else
