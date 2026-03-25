@@ -12,9 +12,9 @@ public class Bullet : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.TryGetComponent(out EnemyManager hitEnemy))// nếu trúng đứa có sprits enemymanager thì true
+        if(other.TryGetComponent(out IDamageable hitTarget))// nếu trúng đứa có IDamageable thì true
         {
-            hitEnemy.TakeDamage(damage);
+            hitTarget.TakeDamage(damage);
             Deactivate();
         }
     }

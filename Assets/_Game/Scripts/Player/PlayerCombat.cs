@@ -1,137 +1,49 @@
+using TMPro;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    public float timeAttack = 0.5f;
-    public float timeNextAttack = 0f;
-    [SerializeField] private Vector2 sizeSpearHitbox = new Vector2(0.5f, 0.25f);
-    public float attackOffset = 0.4f;
-    [SerializeField] private Vector2 debugHitbox = new Vector2(0.1f, 0f);
-    public LayerMask targetSpear;
-    public int weaponType;
+    public WeaponBase currentWeapon;
+    public WeaponBase spearWeapon;
+    public WeaponBase gunWeapon;
 
     private PlayerManager player;
 
-    [SerializeField] private EnemyManager enemy;
-
-    void Start()
-    {
-        player = GetComponent<PlayerManager>();
-    }
+    void Start() => player = GetComponent<PlayerManager>();
 
     void Update()
     {
-        // Cập nhật loại vũ khí
-        if (player.inputHandler.isWeapon1KeyDown) weaponType = 0;
-        if (player.inputHandler.isWeapon2KeyDown) weaponType = 1;
-        if (player.inputHandler.isWeapon3KeyDown) weaponType = 3;
+        // 1. Đổi vũ khí dựa trên phím bấm từ InputHandler
+        if (player.inputHandler.isWeapon1KeyDown) SwitchWeapon(null); // Tay không (animationID = 0)
+        if (player.inputHandler.isWeapon2KeyDown) SwitchWeapon(spearWeapon); // Giáo (animationID = 1)
+        if (player.inputHandler.isWeapon3KeyDown) SwitchWeapon(gunWeapon);   // Súng (animationID = 3)
 
-        // LOGIC CHO SPEAR
-        if (player.inputHandler.isAttackKeyDown && weaponType == 1 && Time.time > timeNextAttack)
+        bool isHoldingMouse = Input.GetMouseButton(0);
+        if (currentWeapon != null)
         {
-            timeNextAttack = Time.time + timeAttack;
-            player.anim.TriggerAttack();
-        }
-
-        // LOGIC CHO GUN
-        if (weaponType == 3)
-        {
-            bool isHoldingShoot = Input.GetMouseButton(0);
-            bool isTap = Input.GetMouseButtonDown(0);
-
-            //tap
-            if (isTap)
+            if (isHoldingMouse)
             {
-                player.anim.SetShootBool(false);
-                player.anim.TriggerShoot();
-                
-                    ExecuteShoot();
-            
-            }
-            //loop
-            else if (isHoldingShoot)
-            {
-                player.anim.SetShootBool(true);
-
-                if (Time.time > timeNextAttack)
-                {
-                    timeNextAttack = Time.time + 0.2f;
-                    ExecuteShoot();
-                }
+                currentWeapon.Attack();
             }
             else
             {
-                player.anim.SetShootBool(false);
+                currentWeapon.StopAttack();
             }
+        }
+    }
+
+    public void SwitchWeapon(WeaponBase newWeapon)
+    {
+        currentWeapon = newWeapon;
+
+        if (currentWeapon != null)
+        {
+            currentWeapon.Setup(player);
+            player.anim.UpdateWeaponAnimation(currentWeapon.animationID);
         }
         else
         {
-            // Nếu không cầm súng thì phải tắt trạng thái bắn
-            player.anim.SetShootBool(false);
-        }
-    }
-
-    public void SpearAttack()
-    {
-        Vector2 positionHitBox = PositionHitBox();
-
-        // Chuyển thành độ
-        float angle = Mathf.Atan2(player.movement.lastDirection.y, player.movement.lastDirection.x) * Mathf.Rad2Deg;
-
-        Collider2D[] hitboxSpear = Physics2D.OverlapBoxAll(positionHitBox, sizeSpearHitbox, angle, targetSpear);
-
-        if (hitboxSpear.Length > 0)
-        {
-            foreach (Collider2D target in hitboxSpear)
-            {
-                if (target.gameObject == gameObject) continue;
-                if (target.TryGetComponent(out EnemyManager hitEnemy))
-                {
-                    hitEnemy.TakeDamage(30);
-                }
-            }
-        }
-    }
-
-    private Vector2 PositionHitBox()
-    {
-        Vector2 lastDirection = player.movement.lastDirection;
-        Vector2 possionAttack = (Vector2)transform.position + lastDirection * attackOffset;
-
-        if (lastDirection == Vector2.down) possionAttack -= debugHitbox;
-        else if (lastDirection == Vector2.up) possionAttack += debugHitbox;
-
-        return possionAttack;
-    }
-
-    void OnDrawGizmos()// hàm vẽ hitbox hihi
-    {
-        if (!Application.isPlaying) return;
-        if (player == null) return;
-
-        Vector2 lastDirection = player.movement.lastDirection;
-        if (lastDirection == Vector2.zero) return;
-
-        Gizmos.color = Color.yellow;
-        Vector2 positonHitBox = PositionHitBox();
-
-        Matrix4x4 oldMatrix = Gizmos.matrix;
-        float angle = Mathf.Atan2(lastDirection.y, lastDirection.x) * Mathf.Rad2Deg;
-        Gizmos.matrix = Matrix4x4.TRS(positonHitBox, Quaternion.Euler(0, 0, angle), Vector3.one);
-        Gizmos.DrawWireCube(Vector3.zero, sizeSpearHitbox);
-        Gizmos.matrix = oldMatrix;
-    }
-    private void ExecuteShoot()
-    {
-        GameObject bullet = ObjectPooler.Instance.GetPooledObject();
-        if (bullet != null)
-        {
-            bullet.transform.position = (Vector2)transform.position + player.movement.lastDirection * attackOffset;
-
-            float angle = Mathf.Atan2(player.movement.lastDirection.y, player.movement.lastDirection.x) * Mathf.Rad2Deg;
-            bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
-
-            bullet.SetActive(true);
+            player.anim.UpdateWeaponAnimation(0);
         }
     }
 }

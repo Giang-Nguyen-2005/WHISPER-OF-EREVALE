@@ -39,7 +39,6 @@ public class PlayerVisuals : MonoBehaviour
         }
 
         if (player.inputHandler.isJumpKeyDown) playerAnimator.SetTrigger("Jump");
-        playerAnimator.SetInteger("WeaponType", player.combat.weaponType);
     }
 
     public void TriggerDash() { playerAnimator.SetTrigger("Dash"); shadowAnimator.SetTrigger("Dash Shadow"); }
@@ -51,4 +50,8 @@ public class PlayerVisuals : MonoBehaviour
     {
         playerAnimator.SetBool("Shoot", isShooting);
     }
+    public void UpdateWeaponAnimation(int id)
+{
+    playerAnimator.SetInteger("WeaponType", id);
+}
 }

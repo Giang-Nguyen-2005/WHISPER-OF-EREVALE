@@ -1,9 +1,9 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyManager : MonoBehaviour
+public class EnemyManager : MonoBehaviour, IDamageable
 {
+    public bool IsDead => isDead;
     [Header("Settings")]
     public float runSpeed = 1.7f;
     public float walkSpeed=0.8f;
