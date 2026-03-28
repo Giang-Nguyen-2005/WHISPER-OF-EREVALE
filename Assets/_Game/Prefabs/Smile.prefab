@@ -123,7 +123,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5621563402078967994}
-  - component: {fileID: 5329964755101779982}
   - component: {fileID: 5013401729114286927}
   - component: {fileID: 836139047330121869}
   m_Layer: 6
@@ -149,32 +148,6 @@ Transform:
   - {fileID: 1224629041937126738}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5329964755101779982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8286825824153503177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b9bbfe9205e7dd4b9ac10dca7f7bb08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  runSpeed: 1.7
-  walkSpeed: 0.8
-  distanceDetect: 4
-  attackRange: 0.5
-  attackCooldown: 1.5
-  maxHealth: 100
-  defaultPosition: {x: 0, y: 0, z: 0}
-  player: {fileID: 0}
-  anim: {fileID: 5833778207867261334}
-  rb: {fileID: 5013401729114286927}
-  distance: 0
-  currentHealth: 0
-  isAttacking: 0
-  debugPosition: {x: 0, y: 0, z: 0}
 --- !u!50 &5013401729114286927
 Rigidbody2D:
   serializedVersion: 5

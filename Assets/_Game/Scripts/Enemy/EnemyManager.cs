@@ -75,6 +75,7 @@ public class EnemyManager : MonoBehaviour, IDamageable
 
     void MoveTowardsPlayer()
     {
+        if(!isAttacking){
         Vector2 input = (player.position - transform.position).normalized;
         
         anim.SetBool("Is Move", true);
@@ -82,6 +83,7 @@ public class EnemyManager : MonoBehaviour, IDamageable
         anim.SetFloat("InputY", input.y);
         
         rb.linearVelocity = new Vector2(input.x, input.y) * runSpeed;
+    }
     }
 
     // COROUTINE: Quy trình tấn công
@@ -111,6 +113,6 @@ public class EnemyManager : MonoBehaviour, IDamageable
         StopAllCoroutines(); 
         
         Debug.Log("Slime cút");
-        Destroy(gameObject, 0.5f);
+        Destroy(gameObject, 0.21f);
     }
 }
