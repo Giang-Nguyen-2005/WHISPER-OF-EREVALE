@@ -15,6 +15,6 @@ MonoBehaviour:
   actorName: 
   maxHealth: 100
   baseSpeed: 1
-  attackRange: 0.8
+  attackRange: 0.5
   attackCooldown: 1.5
   contactDamage: 10

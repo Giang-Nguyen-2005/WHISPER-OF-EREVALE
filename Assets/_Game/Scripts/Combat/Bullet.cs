@@ -1,18 +1,22 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IPoolable
 {
     public float speed = 12.0f;
     public int damage = 15;
     public float lifeTime = 2.0f;
+    [SerializeField] private LayerMask playerLayer;
 
-    void OnEnable()
+    public void OnSpawn()
     {
-      Invoke("Deactivate",lifeTime);// gọi hàm deactivate sau lifeTime  
+        CancelInvoke();
+        Invoke("Deactivate", lifeTime);// gọi hàm deactivate sau lifeTime  
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.TryGetComponent(out IDamageable hitTarget))// nếu trúng đứa có IDamageable thì true
+        // Cần review lại hàm if này
+        if (((1 << other.gameObject.layer) & playerLayer) != 0) return;
+        if (other.TryGetComponent(out IDamageable hitTarget))// nếu trúng đứa có IDamageable thì true
         {
             hitTarget.TakeDamage(damage);
             Deactivate();

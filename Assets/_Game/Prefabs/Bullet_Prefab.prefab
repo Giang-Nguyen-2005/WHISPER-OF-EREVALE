@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2544640610252543960}
   m_Layer: 0
   m_Name: Bullet_Prefab
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -182,3 +182,6 @@ MonoBehaviour:
   speed: 20
   damage: 15
   lifeTime: 2
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 128

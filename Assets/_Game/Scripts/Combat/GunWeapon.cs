@@ -25,14 +25,15 @@ public class GunWeapon : WeaponBase
 
     private void Shoot()
     {
-        GameObject bullet = ObjectPooler.Instance.GetPooledObject();
-        if (bullet != null)
-        {
-            bullet.transform.position = (Vector2)player.transform.position + player.movement.lastDirection * 0.4f;
-            float angle = Mathf.Atan2(player.movement.lastDirection.y, player.movement.lastDirection.x) * Mathf.Rad2Deg;
-            bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
-            bullet.SetActive(true);
-        }
+        // pos của đạn
+        Vector2 spawnPos = (Vector2)player.transform.position + player.movement.lastDirection * 0.4f;
+
+        // góc xoay dựa trên last direction của player
+        float angle = Mathf.Atan2(player.movement.lastDirection.y, player.movement.lastDirection.x) * Mathf.Rad2Deg;
+        Quaternion spawnRot = Quaternion.Euler(0, 0, angle);
+
+        ObjectPooler.Instance.GetFromPool("Bullet", spawnPos, spawnRot);
+        
         player.anim.TriggerShoot();
     }
 }

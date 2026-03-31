@@ -5,33 +5,53 @@ using UnityEngine;
 public class ObjectPooler : MonoBehaviour
 {
     public static ObjectPooler Instance;
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private int poolSize=20;
-    private List<GameObject> pooledObjects = new List<GameObject>();
-    void Awake() {
-    if (Instance == null) Instance = this;
-    else Destroy(gameObject); // Nếu có cái thứ 2 thì xóa nó đi tránh có 2 pooled trong 1 scence
-}
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [System.Serializable]
+    public class Pool
     {
-        for(int i = 0; i < poolSize; i++)
+        public string tag;
+        public GameObject prefab;
+        public int size;
+    }
+    public List<Pool> pools;
+    private Dictionary<string, Queue<GameObject>> poolDictionary;
+
+    void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else { Destroy(gameObject); return; }
+
+        poolDictionary = new Dictionary<string, Queue<GameObject>>();
+
+        foreach (Pool pool in pools)
         {
-            GameObject obj=Instantiate(bulletPrefab);//khởi tạo 1 gameobject = bulletprefab (object có sprite bullet)
-            obj.SetActive(false);//set trạng thái không hiện thị là false
-            pooledObjects.Add(obj);//thêm vào list ( list này gồm 20 viên đạn)
+            Queue<GameObject> objectPool = new Queue<GameObject>();
+            for (int i = 0; i <= pool.size; i++)
+            {
+                GameObject obj = Instantiate(pool.prefab, transform);
+                obj.SetActive(false);
+                objectPool.Enqueue(obj);
+            }
+            poolDictionary.Add(pool.tag, objectPool);
         }
     }
-    public GameObject GetPooledObject()//hàm lấy đạn
+    public GameObject GetFromPool(string tag, Vector3 position, Quaternion rotation)
     {
-        foreach(GameObject obj in pooledObjects)// duyệt từng obj trong list
+        if (!poolDictionary.ContainsKey(tag))
         {
-            if(!obj.activeInHierarchy) return obj;// nếu ở trong hierarchy không active thì lấy obj đấy
+            Debug.LogError($"Lỗi: Không tìm thấy Tag [{tag}] trong Pooler!");
+            return null;
         }
-        // Tạo 1 viên đạn nếu trong list không có viên nào thỏa điều kiện
-        GameObject newObj = Instantiate(bulletPrefab);
-        newObj.SetActive(false);
-        pooledObjects.Add(newObj);
-        return newObj;
+        GameObject objectToSpawn = poolDictionary[tag].Dequeue();
+
+        poolDictionary[tag].Enqueue(objectToSpawn);
+        objectToSpawn.SetActive(true);
+        objectToSpawn.transform.position =position;
+        objectToSpawn.transform.rotation=rotation;
+        IPoolable poolable = objectToSpawn.GetComponent<IPoolable>();
+        if(poolable!=null) poolable.OnSpawn();
+        return objectToSpawn;
+
     }
+
+
 }

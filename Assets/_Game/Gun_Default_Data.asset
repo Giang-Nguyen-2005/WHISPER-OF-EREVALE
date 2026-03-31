@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac4e483390f261b47ae6f02fbe714b4e, type: 3}
   m_Name: Gun_Default_Data
   m_EditorClassIdentifier: Assembly-CSharp::GunData
-  fireRate: 0.5
+  fireRate: 0.2
   damage: 15
   accuracy: 0
   reloadTime: 0

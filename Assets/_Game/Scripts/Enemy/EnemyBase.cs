@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
 
-public abstract class EnemyBase : MonoBehaviour, IDamageable
+public abstract class EnemyBase : MonoBehaviour, IDamageable , IPoolable
 {
     public EnemyData data;
     protected int currentHealth;
@@ -19,6 +19,18 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
     }
+    public void OnSpawn()
+    {
+        ResetEnemy();
+    }
+    public virtual void ResetEnemy()
+    {
+        isDead=false;
+        isAttacking=false;
+        currentHealth=data.maxHealth;
+        GetComponent<Collider2D>().enabled=true;
+        if(rb!=null) rb.linearVelocity =Vector2.zero;
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
@@ -27,13 +39,13 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
     }
     protected virtual void FixedUpdate()
     {
-        if (isDead || player == null || isAttacking) 
-    {
-        rb.linearVelocity = Vector2.zero; 
-        return;
-    }
-    
-    MoveTowardsPlayer();
+        if (isDead || player == null || isAttacking)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+
+        MoveTowardsPlayer();
     }
     // Update is called once per frame
     protected virtual void Update()
@@ -69,6 +81,20 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
         rb.linearVelocity = Vector2.zero;
         anim.SetTrigger("Death");
         GetComponent<Collider2D>().enabled = false;
-        Destroy(gameObject, 0.21f);
+        Invoke("Deactivate",0.25f);
     }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        // Nếu chạm vào Player
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (collision.gameObject.TryGetComponent(out IDamageable playerHealth))
+            {
+                // Cắn theo sát thương trong data
+                playerHealth.TakeDamage(data.contactDamage);
+            }
+        }
+    }
+    private void Deactivate() => gameObject.SetActive(false);
+
 }

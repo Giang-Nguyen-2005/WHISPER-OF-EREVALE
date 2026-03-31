@@ -76,7 +76,7 @@ ScriptedImporter:
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 1
-    defaultPivotAlignment: 9
+    defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0}
     mosaicPadding: 4
     spritePadding: 0
@@ -91,7 +91,7 @@ ScriptedImporter:
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 1
-    defaultPivotAlignment: 9
+    defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0}
     mosaicPadding: 4
     spritePadding: 0
@@ -102,7 +102,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   importFileNodeState: 1
-  platformSettingsDirtyTick: 639103284559918700
+  platformSettingsDirtyTick: 639103994905009812
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -130,7 +130,7 @@ ScriptedImporter:
   - name: Frame_0
     originalName: 
     pivot: {x: 0.5, y: 0}
-    alignment: 9
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -151,7 +151,7 @@ ScriptedImporter:
   - name: Frame_1
     originalName: 
     pivot: {x: 0.5, y: 0}
-    alignment: 9
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -172,7 +172,7 @@ ScriptedImporter:
   - name: Frame_2
     originalName: 
     pivot: {x: 0.5, y: 0}
-    alignment: 9
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -193,7 +193,7 @@ ScriptedImporter:
   - name: Frame_3
     originalName: 
     pivot: {x: 0.5, y: 0}
-    alignment: 9
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -214,7 +214,7 @@ ScriptedImporter:
   - name: Frame_4
     originalName: 
     pivot: {x: 0.5, y: 0}
-    alignment: 9
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -235,7 +235,7 @@ ScriptedImporter:
   - name: Frame_5
     originalName: 
     pivot: {x: 0.5, y: 0}
-    alignment: 9
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -256,7 +256,7 @@ ScriptedImporter:
   - name: Frame_6
     originalName: 
     pivot: {x: 0.5, y: 0}
-    alignment: 9
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -277,7 +277,7 @@ ScriptedImporter:
   - name: Frame_7
     originalName: 
     pivot: {x: 0.5, y: 0}
-    alignment: 9
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -298,7 +298,7 @@ ScriptedImporter:
   - name: Frame_8
     originalName: 
     pivot: {x: 0.5, y: 0}
-    alignment: 9
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -319,7 +319,7 @@ ScriptedImporter:
   - name: Frame_9
     originalName: 
     pivot: {x: 0.5, y: 0}
-    alignment: 9
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
