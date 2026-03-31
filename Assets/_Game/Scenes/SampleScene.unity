@@ -255,10 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4897de98a81722d40ade3ccb6a12a6a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 2.5
-  walkSpeed: 1.4
-  dashSpeed: 6
-  timeDash: 0.18
+  data: {fileID: 11400000, guid: 2621aa97d28c39144bc9eeaa81a9d813, type: 2}
   currentSpeed: 0
   lastDirection: {x: 0, y: 0}
   isDashing: 0
@@ -359,8 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52d4e57fdd941e447bf209f44bd8f09a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  playerData: {fileID: 11400000, guid: 5c18b83fbe24c1543910267aff4d2a4c, type: 2}
-  invincibilityDuration: 1
+  data: {fileID: 11400000, guid: 2621aa97d28c39144bc9eeaa81a9d813, type: 2}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,37 +692,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &817404868
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 817404869}
-  m_Layer: 0
-  m_Name: Enemy Pooler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &817404869
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 817404868}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.40274, y: 1.49859, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1056994416
 GameObject:
   m_ObjectHideFlags: 0
@@ -870,8 +835,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8912ad5de674994c8117642c9b21bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectPooler
-  bulletPrefab: {fileID: 2061008965260735171, guid: da95e4a903e070d4695a36e4428bc909, type: 3}
-  poolSize: 20
+  pools:
+  - tag: Bullet
+    prefab: {fileID: 2061008965260735171, guid: da95e4a903e070d4695a36e4428bc909, type: 3}
+    size: 30
+  - tag: SlimeWater
+    prefab: {fileID: 8286825824153503177, guid: 93c468076b1f5e14da84de557a8dd4f9, type: 3}
+    size: 30
+  - tag: SlimeMagma
+    prefab: {fileID: 6272015177338957404, guid: 8e0aac32831aaab419e11e21979cf190, type: 3}
+    size: 30
+  - tag: SlimeWind
+    prefab: {fileID: 8539368162980941972, guid: 6a67a39f8fd8e5243b11c3768ac1c4b2, type: 3}
+    size: 30
 --- !u!4 &1134396113
 Transform:
   m_ObjectHideFlags: 0
@@ -1181,11 +1157,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49cea098fdc784e4281e791cbc065853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  enemyPrefabs:
-  - {fileID: 6272015177338957404, guid: 8e0aac32831aaab419e11e21979cf190, type: 3}
-  spawnInterval: 3
-  minDistance: 6
-  maxDistance: 8
+  enemyTags:
+  - SlimeWater
+  - SlimeMagma
+  - SlimeWind
+  spawnInterval: 2
+  minDistance: 10
+  maxDistance: 12
 --- !u!4 &1845411548
 Transform:
   m_ObjectHideFlags: 0
@@ -1212,4 +1190,3 @@ SceneRoots:
   - {fileID: 1134396113}
   - {fileID: 569754175}
   - {fileID: 1845411548}
-  - {fileID: 817404869}

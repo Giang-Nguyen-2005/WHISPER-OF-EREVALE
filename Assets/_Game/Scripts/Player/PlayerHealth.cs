@@ -4,12 +4,9 @@ using System.Collections;
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
     [Header("Settings")]
-    public ActorData playerData;
+    public PlayerData data;
     private int currentHealth;
     private bool isDead = false;
-
-    [Header("I-Frames (Bất tử tạm thời)")]
-    [SerializeField] private float invincibilityDuration = 1f;
     private bool isInvincible = false;
 
     private PlayerManager player;
@@ -19,7 +16,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     void Start()
     {
         player = GetComponent<PlayerManager>();
-        currentHealth = playerData.maxHealth; 
+        currentHealth = data.maxHealth; 
     }
 
     public void TakeDamage(int damage)
@@ -45,7 +42,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         isInvincible = true;
         // Giang có thể làm nhân vật nhấp nháy ở đây
-        yield return new WaitForSeconds(invincibilityDuration);
+        yield return new WaitForSeconds(data.invincibilityDuration);
         isInvincible = false;
     }
 

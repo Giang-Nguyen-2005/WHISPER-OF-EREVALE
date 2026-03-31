@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour, IPoolable
 {
-    public float speed = 12.0f;
-    public int damage = 15;
+    public GunData data;
     public float lifeTime = 2.0f;
     [SerializeField] private LayerMask playerLayer;
 
     public void OnSpawn()
     {
+    
         CancelInvoke();
         Invoke("Deactivate", lifeTime);// gọi hàm deactivate sau lifeTime  
     }
@@ -18,7 +18,7 @@ public class Bullet : MonoBehaviour, IPoolable
         if (((1 << other.gameObject.layer) & playerLayer) != 0) return;
         if (other.TryGetComponent(out IDamageable hitTarget))// nếu trúng đứa có IDamageable thì true
         {
-            hitTarget.TakeDamage(damage);
+            hitTarget.TakeDamage(data.damage);
             Deactivate();
         }
     }
@@ -32,6 +32,6 @@ public class Bullet : MonoBehaviour, IPoolable
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.right * speed * Time.deltaTime);//forward là trục x( dùng mathf.atan2 để xoay)
+        transform.Translate(Vector2.right * data.speed * Time.deltaTime);//forward là trục x( dùng mathf.atan2 để xoay)
     }
 }

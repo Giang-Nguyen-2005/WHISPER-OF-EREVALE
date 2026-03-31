@@ -50,6 +50,7 @@ public class PlayerVisuals : MonoBehaviour
     {
         playerAnimator.SetBool("Shoot", isShooting);
     }
+    public void SetReloadBool(bool isReloading){playerAnimator.SetBool("isReloading",isReloading);}
     public void UpdateWeaponAnimation(int id)
 {
     playerAnimator.SetInteger("WeaponType", id);

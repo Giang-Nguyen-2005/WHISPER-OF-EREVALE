@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac4e483390f261b47ae6f02fbe714b4e, type: 3}
   m_Name: Gun_Default_Data
   m_EditorClassIdentifier: Assembly-CSharp::GunData
+  speed: 13
   fireRate: 0.2
-  damage: 15
+  damage: 50
   accuracy: 0
   reloadTime: 0
   bulletPrefab: {fileID: 2061008965260735171, guid: da95e4a903e070d4695a36e4428bc909, type: 3}

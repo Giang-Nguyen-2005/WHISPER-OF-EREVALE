@@ -32,18 +32,20 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    public void SwitchWeapon(WeaponBase newWeapon)
-    {
-        currentWeapon = newWeapon;
+   public void SwitchWeapon(WeaponBase newWeapon)
+{
+    if (currentWeapon == newWeapon) return; 
 
-        if (currentWeapon != null)
-        {
-            currentWeapon.Setup(player);
-            player.anim.UpdateWeaponAnimation(currentWeapon.animationID);
-        }
-        else
-        {
-            player.anim.UpdateWeaponAnimation(0);
-        }
+    currentWeapon = newWeapon;
+
+    if (currentWeapon != null)
+    {
+        currentWeapon.Setup(player);
+        player.anim.UpdateWeaponAnimation(currentWeapon.animationID);
     }
+    else
+    {
+        player.anim.UpdateWeaponAnimation(0);
+    }
+}
 }

@@ -179,8 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc483ee59791f1943b3ce893fc34952d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
-  speed: 20
-  damage: 15
+  data: {fileID: 11400000, guid: bedfa91dc3c759048aafbb13f7fc505d, type: 2}
   lifeTime: 2
   playerLayer:
     serializedVersion: 2

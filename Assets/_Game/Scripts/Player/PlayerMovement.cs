@@ -3,10 +3,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float runSpeed = 2.2f;
-    public float walkSpeed = 1.2f;
-    public float dashSpeed = 5.2f;
-    public float timeDash = 0.18f;
+    public PlayerData data;
     
     public float currentSpeed;
     public Vector2 lastDirection; // Hướng nhân vật nhìn (theo chuột)
@@ -39,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isDashing)
         {
-            currentSpeed = player.inputHandler.isRunning ? runSpeed : walkSpeed;
+            currentSpeed = player.inputHandler.isRunning ? data.runSpeed : data.walkSpeed;
             player.rb.linearVelocity = player.inputHandler.moveInput * currentSpeed;
         }
     }
@@ -48,9 +45,9 @@ public class PlayerMovement : MonoBehaviour
     {
         isDashing = true;
         // Dash theo hướng phím bấm
-        player.rb.linearVelocity = player.inputHandler.moveInput * dashSpeed;
+        player.rb.linearVelocity = player.inputHandler.moveInput * data.dashSpeed;
         player.anim.TriggerDash();
-        yield return new WaitForSeconds(timeDash);
+        yield return new WaitForSeconds(data.dashDuration);
         isDashing = false;
     }
 }
