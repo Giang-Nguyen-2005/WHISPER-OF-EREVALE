@@ -4,4 +4,7 @@ public static class PlayerEvents
 {
     public static Action<int,int> OnHealthChanged; // CurrentHealt, MaxHealth
     public static Action OnPlayerDeath;
+
+    public static Action<int,int> OnExperienceChanged;
+    public static Action<int> OnLevelUp;
 }

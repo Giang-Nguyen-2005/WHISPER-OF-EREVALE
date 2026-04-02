@@ -10,6 +10,7 @@ TagManager:
   - SlimeMagma
   - SlimeWind
   - SlimeWater
+  - Vampire
   layers:
   - Default
   - TransparentFX
