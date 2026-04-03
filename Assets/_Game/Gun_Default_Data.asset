@@ -17,6 +17,6 @@ MonoBehaviour:
   damage: 50
   accuracy: 0
   reloadTime: 1.5
-  magSize: 10
+  magSize: 30
   timeReload: 2
   bulletPrefab: {fileID: 2061008965260735171, guid: da95e4a903e070d4695a36e4428bc909, type: 3}

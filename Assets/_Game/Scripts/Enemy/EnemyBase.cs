@@ -82,6 +82,8 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable , IPoolable
         anim.SetTrigger("Death");
         GetComponent<Collider2D>().enabled = false;
         Invoke("Deactivate",0.25f);
+        //drop gem
+        ObjectPooler.Instance.GetFromPool("ExpGem",transform.position,Quaternion.identity);
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
