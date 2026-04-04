@@ -16,5 +16,5 @@ MonoBehaviour:
   maxHealth: 200
   baseSpeed: 1
   attackRange: 5
-  attackCooldown: 3
+  attackCooldown: 4
   contactDamage: 10

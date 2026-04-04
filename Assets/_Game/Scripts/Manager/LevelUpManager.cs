@@ -1,0 +1,59 @@
+using System.Collections.Generic;
+using NUnit.Framework.Interfaces;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class LevelUpManager : MonoBehaviour
+{
+
+    [Header("UI Reference")]
+    [SerializeField] private GameObject levelUpPanel;
+    [SerializeField] private UpgradeUI[] upgradeButtons;
+
+    [Header("Data")]
+    [SerializeField] private List<UpgradeData> allUpgrades;
+
+    void OnEnable()
+    {
+        PlayerEvents.OnLevelUp+=ShowLevelUpUI;
+    }
+    void OnDisable()
+    {
+        PlayerEvents.OnLevelUp-=ShowLevelUpUI;
+    }
+    private void ShowLevelUpUI(int currentLevel)
+    {
+        Time.timeScale=0;
+        levelUpPanel.SetActive(true);
+
+        List<UpgradeData> selectedUpgrades = GetRandomUpgrades(upgradeButtons.Length);
+
+        for(int i=0 ; i < upgradeButtons.Length; i++)
+        {
+            upgradeButtons[i].Setup(selectedUpgrades[i],this);
+        }
+    }
+    private List<UpgradeData> GetRandomUpgrades(int count)
+    {
+        List<UpgradeData> list = new List<UpgradeData>(allUpgrades);
+        List<UpgradeData> result =new List<UpgradeData>();
+
+        for (int i=0; i<count&& list.Count > 0; i++)
+        {
+            int index =Random.Range(0,list.Count);
+            result.Add(list[index]);
+            list.RemoveAt(index);
+        }
+        return result;
+    }
+    public void SelectUpgrade( UpgradeData data)
+    {
+        ApplyUpgradeEffect(data);
+        levelUpPanel.SetActive(false);
+        Time.timeScale=1;
+    }
+    private void ApplyUpgradeEffect(UpgradeData data)
+    {
+        Debug.Log("Đã Chọn: "+ data.upgradeName);
+    }
+}

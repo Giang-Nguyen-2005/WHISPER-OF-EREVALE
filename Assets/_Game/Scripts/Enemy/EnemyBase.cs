@@ -52,7 +52,6 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable , IPoolable
     {
         if (isDead || player == null) return;
         float dist = Vector2.Distance(transform.position, player.position);
-        Debug.Log("Distance: " + dist);
         if (dist <= data.attackRange && !isAttacking)
         {
             AttackLogic();
