@@ -16,4 +16,4 @@ MonoBehaviour:
   description: +1 fireRate
   icon: {fileID: -4060339134492186001, guid: 3b6602bc54a07d74d96961ecaa2ffdf7, type: 3}
   type: 2
-  value: 1
+  value: 0.1

@@ -410,6 +410,7 @@ MonoBehaviour:
   currentSpeed: 0
   lastDirection: {x: 0, y: 0}
   isDashing: 0
+  bonusSpeed: 0
 --- !u!114 &48909816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,6 +440,8 @@ MonoBehaviour:
   currentWeapon: {fileID: 0}
   spearWeapon: {fileID: 48909820}
   gunWeapon: {fileID: 48909819}
+  bonusFireRate: 0
+  bonusDamage: 0
 --- !u!114 &48909818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1463,6 +1466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9269636d0b1f42942b09522d2e6f7e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelUpManager
+  player: {fileID: 48909814}
   levelUpPanel: {fileID: 655404561}
   upgradeButtons:
   - {fileID: 20430202}

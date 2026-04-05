@@ -6,6 +6,8 @@ public class PlayerCombat : MonoBehaviour
     public WeaponBase currentWeapon;
     public WeaponBase spearWeapon;
     public WeaponBase gunWeapon;
+    public float bonusFireRate=0f;
+    public int bonusDamage=0;
 
     private PlayerManager player;
 

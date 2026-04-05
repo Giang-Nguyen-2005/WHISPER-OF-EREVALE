@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 lastDirection; // Hướng nhân vật nhìn (theo chuột)
     public bool isDashing = false;
 
+    public float bonusSpeed=0f;
+
     private PlayerManager player;
 
     void Start()
@@ -36,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isDashing)
         {
-            currentSpeed = player.inputHandler.isRunning ? data.runSpeed : data.walkSpeed;
+            currentSpeed = (player.inputHandler.isRunning ? data.runSpeed : data.walkSpeed)+ bonusSpeed;
             player.rb.linearVelocity = player.inputHandler.moveInput * currentSpeed;
         }
     }

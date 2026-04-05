@@ -1,11 +1,20 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Bullet : MonoBehaviour, IPoolable
 {
+    public PlayerManager player;
     public GunData data;
     public float lifeTime = 2.0f;
     [SerializeField] private LayerMask playerLayer;
 
+    void Awake()
+    {
+        if (player == null)
+        {
+            player=GameObject.FindWithTag("Player").GetComponent<PlayerManager>();
+        }
+    }
     public void OnSpawn()
     {
     
@@ -18,7 +27,7 @@ public class Bullet : MonoBehaviour, IPoolable
         if (((1 << other.gameObject.layer) & playerLayer) != 0) return;
         if (other.TryGetComponent(out IDamageable hitTarget))// nếu trúng đứa có IDamageable thì true
         {
-            hitTarget.TakeDamage(data.damage);
+            hitTarget.TakeDamage(data.damage+ player.combat.bonusDamage);
             Deactivate();
         }
     }
