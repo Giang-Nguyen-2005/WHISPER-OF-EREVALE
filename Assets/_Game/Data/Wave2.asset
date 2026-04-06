@@ -10,13 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a8e3d59e52ff5441a32b4a72a13ea56, type: 3}
-  m_Name: NewWave
+  m_Name: Wave2
   m_EditorClassIdentifier: Assembly-CSharp::WaveData
   enemyGroups:
-  - enemyTag: SlimeWater
-    enemyCount: 8
-    spawnInterval: 0
-  - enemyTag: SlimeWind
-    enemyCount: 5
+  - enemyTag: Vampire
+    enemyCount: 15
     spawnInterval: 0
   timeAfterWave: 5

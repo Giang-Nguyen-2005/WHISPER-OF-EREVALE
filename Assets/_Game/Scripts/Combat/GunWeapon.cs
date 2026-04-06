@@ -48,7 +48,12 @@ public class GunWeapon : WeaponBase
         float angle = Mathf.Atan2(player.movement.lastDirection.y, player.movement.lastDirection.x) * Mathf.Rad2Deg;
         Quaternion spawnRot = Quaternion.Euler(0, 0, angle);
 
-        ObjectPooler.Instance.GetFromPool("Bullet", spawnPos, spawnRot);
+        GameObject bulletObj=ObjectPooler.Instance.GetFromPool("Bullet", spawnPos, spawnRot);
+
+        if(bulletObj.TryGetComponent(out Bullet bullet))
+        {
+            bullet.Init(data, player.combat.bonusDamage);
+        }
 
         player.anim.TriggerShoot();
         Debug.Log($"Ammo: {currentAmmo}/{data.magSize}");

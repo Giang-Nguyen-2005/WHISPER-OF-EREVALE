@@ -10,7 +10,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable , IPoolable
     protected int currentHealth;
     protected bool isDead = false;
     protected bool isAttacking = false;
-    [SerializeField] protected Transform player;
+    [SerializeField] protected Transform playerTranform;
     protected Rigidbody2D rb;
     protected Animator anim;
     public bool IsDead => isDead;
@@ -22,6 +22,10 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable , IPoolable
     public void OnSpawn()
     {
         ResetEnemy();
+    }
+    public void SetTarget(Transform target)
+    {
+        playerTranform=target;
     }
     public virtual void ResetEnemy()
     {
@@ -35,11 +39,10 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable , IPoolable
     protected virtual void Start()
     {
         currentHealth = data.maxHealth;
-        if (player == null) player = GameObject.FindGameObjectWithTag("Player").transform;
     }
     protected virtual void FixedUpdate()
     {
-        if (isDead || player == null || isAttacking)
+        if (isDead || playerTranform == null || isAttacking)
         {
             rb.linearVelocity = Vector2.zero;
             return;
@@ -50,8 +53,8 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable , IPoolable
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (isDead || player == null) return;
-        float dist = Vector2.Distance(transform.position, player.position);
+        if (isDead || playerTranform == null) return;
+        float dist = Vector2.Distance(transform.position, playerTranform.position);
         if (dist <= data.attackRange && !isAttacking)
         {
             AttackLogic();
@@ -59,7 +62,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable , IPoolable
     }
     protected void MoveTowardsPlayer()
     {
-        Vector2 direction = (player.position - transform.position).normalized;
+        Vector2 direction = (playerTranform.position - transform.position).normalized;
         rb.linearVelocity = direction * data.baseSpeed;
         anim.SetFloat("InputX", direction.x);
         anim.SetFloat("InputY", direction.y);

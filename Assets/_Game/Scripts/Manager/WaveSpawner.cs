@@ -27,7 +27,7 @@ public class WaveSpawner : MonoBehaviour
         isSpawning = true;
         WaveData currentWave = waves[currentWaveIndex];
 
-        foreach (var group in currentWave.enemyGroups)
+        foreach (EnemyGroup group in currentWave.enemyGroups)
         {
             yield return StartCoroutine(SpawnEnemyGroup(group));
         }
@@ -45,7 +45,6 @@ public class WaveSpawner : MonoBehaviour
     {
         for (int i = 0; i < group.enemyCount; i++)
         {
-            // Lấy một hướng ngẫu nhiên
             float randomAngle = Random.Range(0f, Mathf.PI * 2f);
 
             // Lấy một khoảng cách ngẫu nhiên trong tầm min-max
@@ -56,8 +55,11 @@ public class WaveSpawner : MonoBehaviour
             float spawnY = player.position.y + Mathf.Sin(randomAngle) * randomDistance;
 
 
-            ObjectPooler.Instance.GetFromPool(group.enemyTag, new Vector2(spawnX,spawnY), Quaternion.identity);
-
+           GameObject enemy= ObjectPooler.Instance.GetFromPool(group.enemyTag, new Vector2(spawnX,spawnY), Quaternion.identity);
+            if(enemy.TryGetComponent(out EnemyBase enemyScript))
+            {
+                enemyScript.SetTarget(player);
+            }
             yield return new WaitForSeconds(group.spawnInterval);
         }
     }

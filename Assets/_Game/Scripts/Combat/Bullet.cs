@@ -1,19 +1,19 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 public class Bullet : MonoBehaviour, IPoolable
 {
-    public PlayerManager player;
     public GunData data;
+    private float totalDamage;
     public float lifeTime = 2.0f;
     [SerializeField] private LayerMask playerLayer;
 
-    void Awake()
+    public void Init(GunData gunData, float bonusDamage)
     {
-        if (player == null)
-        {
-            player=GameObject.FindWithTag("Player").GetComponent<PlayerManager>();
-        }
+        data=gunData;
+        totalDamage =gunData.damage +bonusDamage;
     }
     public void OnSpawn()
     {
@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour, IPoolable
         if (((1 << other.gameObject.layer) & playerLayer) != 0) return;
         if (other.TryGetComponent(out IDamageable hitTarget))// nếu trúng đứa có IDamageable thì true
         {
-            hitTarget.TakeDamage(data.damage+ player.combat.bonusDamage);
+            hitTarget.TakeDamage(Mathf.RoundToInt(totalDamage));
             Deactivate();
         }
     }
@@ -41,6 +41,6 @@ public class Bullet : MonoBehaviour, IPoolable
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.right * data.speed * Time.deltaTime);//forward là trục x( dùng mathf.atan2 để xoay)
+        transform.position += transform.right * data.speed * Time.deltaTime;
     }
 }

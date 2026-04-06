@@ -8,15 +8,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float minDistance = 8f;   // Khoảng cách tối thiểu
     [SerializeField] private float maxDistance = 12f;  // Khoảng cách tối đa
 
-    private Transform player;
+    [SerializeField] private Transform player;
     private float spawnTimer;
-
-    void Start()
-    {
-        // Tìm Player để biết chỗ mà "bao vây"
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-    }
-
     void Update()
     {
         if (player == null) return;
@@ -37,7 +30,11 @@ public class EnemySpawner : MonoBehaviour
 
         Vector2 spawnPos = GetRandomSpawnPosition();
 
-        ObjectPooler.Instance.GetFromPool(tagToSpawn,spawnPos,Quaternion.identity);
+        GameObject enemy= ObjectPooler.Instance.GetFromPool(tagToSpawn,spawnPos,Quaternion.identity);
+        if(enemy.TryGetComponent(out EnemyBase enemyScript))
+        {
+            enemyScript.SetTarget(player);
+        }
     }
 
     private Vector2 GetRandomSpawnPosition()
