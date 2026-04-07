@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3744154394082604700}
   - component: {fileID: 2809796481213847925}
   - component: {fileID: -4857564564726437825}
-  - component: {fileID: 1073479872648692619}
+  - component: {fileID: 3857985133468529115}
   m_Layer: 6
   m_Name: Vampire
   m_TagString: Vampire
@@ -99,7 +99,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0.00272429, y: 0.103720605}
   m_Size: {x: 0.5986736, y: 0.75450027}
   m_Direction: 0
---- !u!114 &1073479872648692619
+--- !u!114 &3857985133468529115
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,11 +108,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 726636160018773252}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10d0176a79f0a3840a410157eb64ffda, type: 3}
+  m_Script: {fileID: 11500000, guid: ca52cf75a2bd3954e8f7aee02984afd4, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemy
-  data: {fileID: 11400000, guid: 12f20b786bc8da2448ed829b70fbe5b5, type: 2}
-  player: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::RangedEnemy
+  data: {fileID: 11400000, guid: 86cad8853d8f1024598eecc4ab3d1a51, type: 2}
+  playerTransform: {fileID: 0}
 --- !u!1 &2705723532126887895
 GameObject:
   m_ObjectHideFlags: 0

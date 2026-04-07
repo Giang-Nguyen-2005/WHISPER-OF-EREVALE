@@ -7,13 +7,15 @@ public class Bullet : MonoBehaviour, IPoolable
 {
     public GunData data;
     private float totalDamage;
+    private float bulletSpeed;
     public float lifeTime = 2.0f;
-    [SerializeField] private LayerMask playerLayer;
+    private LayerMask targetLayer;
 
-    public void Init(GunData gunData, float bonusDamage)
+    public void Init(float damage, float speed,LayerMask target)
     {
-        data=gunData;
-        totalDamage =gunData.damage +bonusDamage;
+        this.bulletSpeed =speed;
+        this.totalDamage =damage;
+        this.targetLayer=target;
     }
     public void OnSpawn()
     {
@@ -24,7 +26,7 @@ public class Bullet : MonoBehaviour, IPoolable
     void OnTriggerEnter2D(Collider2D other)
     {
         // Cần review lại hàm if này
-        if (((1 << other.gameObject.layer) & playerLayer) != 0) return;
+        if (((1 << other.gameObject.layer) & targetLayer) != 0) return;
         if (other.TryGetComponent(out IDamageable hitTarget))// nếu trúng đứa có IDamageable thì true
         {
             hitTarget.TakeDamage(Mathf.RoundToInt(totalDamage));

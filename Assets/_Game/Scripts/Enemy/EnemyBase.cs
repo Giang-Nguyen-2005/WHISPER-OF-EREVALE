@@ -10,7 +10,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable , IPoolable
     protected int currentHealth;
     protected bool isDead = false;
     protected bool isAttacking = false;
-    [SerializeField] protected Transform playerTranform;
+    [SerializeField] protected Transform playerTransform;
     protected Rigidbody2D rb;
     protected Animator anim;
     public bool IsDead => isDead;
@@ -25,7 +25,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable , IPoolable
     }
     public void SetTarget(Transform target)
     {
-        playerTranform=target;
+        playerTransform=target;
     }
     public virtual void ResetEnemy()
     {
@@ -42,7 +42,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable , IPoolable
     }
     protected virtual void FixedUpdate()
     {
-        if (isDead || playerTranform == null || isAttacking)
+        if (isDead || playerTransform == null || isAttacking)
         {
             rb.linearVelocity = Vector2.zero;
             return;
@@ -53,8 +53,8 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable , IPoolable
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (isDead || playerTranform == null) return;
-        float dist = Vector2.Distance(transform.position, playerTranform.position);
+        if (isDead || playerTransform == null) return;
+        float dist = Vector2.Distance(transform.position, playerTransform.position);
         if (dist <= data.attackRange && !isAttacking)
         {
             AttackLogic();
@@ -62,7 +62,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable , IPoolable
     }
     protected void MoveTowardsPlayer()
     {
-        Vector2 direction = (playerTranform.position - transform.position).normalized;
+        Vector2 direction = (playerTransform.position - transform.position).normalized;
         rb.linearVelocity = direction * data.baseSpeed;
         anim.SetFloat("InputX", direction.x);
         anim.SetFloat("InputY", direction.y);

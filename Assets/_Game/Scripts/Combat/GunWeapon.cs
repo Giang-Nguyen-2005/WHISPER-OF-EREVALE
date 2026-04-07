@@ -52,7 +52,8 @@ public class GunWeapon : WeaponBase
 
         if(bulletObj.TryGetComponent(out Bullet bullet))
         {
-            bullet.Init(data, player.combat.bonusDamage);
+            LayerMask playerLayer = LayerMask.GetMask("Player");
+            bullet.Init(player.combat.bonusDamage + data.damage, data.speed,playerLayer);
         }
 
         player.anim.TriggerShoot();
