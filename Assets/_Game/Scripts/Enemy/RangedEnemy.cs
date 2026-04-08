@@ -14,11 +14,20 @@ public class RangedEnemy : EnemyBase
 
     protected override void FixedUpdate()
     {
-        if (isDead || playerTransform == null || isAttacking)
+        if (isDead || playerTransform == null) return;
+
+        Vector2 direction = (playerTransform.position - transform.position).normalized;
+        anim.SetFloat("InputX", direction.x);
+        anim.SetFloat("InputY", direction.y);
+
+        if (isAttacking)
         {
+            rb.linearVelocity = Vector2.zero;
             return;
         }
+
         float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
+
         if (distanceToPlayer > rangedData.stopDistance)
         {
             MoveTowardsPlayer();
@@ -26,9 +35,6 @@ public class RangedEnemy : EnemyBase
         else
         {
             rb.linearVelocity = Vector2.zero;
-            Vector2 direction = (playerTransform.position - transform.position).normalized;
-            anim.SetFloat("InputX", direction.x);
-            anim.SetFloat("InputY", direction.y);
         }
     }
     protected override void AttackLogic()
@@ -42,8 +48,9 @@ public class RangedEnemy : EnemyBase
     {
         isAttacking = true;
         rb.linearVelocity = Vector2.zero;
+
         anim.SetTrigger("Attack");
-        SpawnBullet();
+        
         yield return new WaitForSeconds(data.attackCooldown);
 
         isAttacking = false;
@@ -53,17 +60,22 @@ public class RangedEnemy : EnemyBase
         Vector2 direction = (playerTransform.position - transform.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-         Vector2 spawnPos = (Vector2)transform.position + direction *0.4f;
+        Vector2 spawnPos = (Vector2)transform.position + direction * 0.5f;
 
         GameObject bulletObj = ObjectPooler.Instance.GetFromPool(rangedData.bulletTag,
-        transform.position,
+        spawnPos,
         Quaternion.Euler(0, 0, angle));
 
-        if(bulletObj.TryGetComponent(out Bullet bulletScpript))
+        if (bulletObj.TryGetComponent(out Bullet bulletScpript))
         {
             LayerMask enemyLayer = LayerMask.GetMask("TargetSpear");
-            bulletScpript.Init(data.contactDamage ,rangedData.bulletSpeed,enemyLayer);
+            bulletScpript.Init(data.contactDamage, rangedData.bulletSpeed, enemyLayer, rangedData.bulletLifeTime);
         }
+    }
+    public override void PerformAttackLogic()
+    {
+        if (isDead || playerTransform == null) return;
+        SpawnBullet();
     }
 
 }

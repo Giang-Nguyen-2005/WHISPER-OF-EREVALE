@@ -1507,7 +1507,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &951897354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1990,6 +1990,9 @@ MonoBehaviour:
   - tag: ExpGem
     prefab: {fileID: 3550443930030241444, guid: 1d59eb241ba5e234cbdf26cfcde9be61, type: 3}
     size: 30
+  - tag: VampireFireBall
+    prefab: {fileID: 6196537554466307333, guid: 06793ec3877dfe2419092cc92fdf18bf, type: 3}
+    size: 20
 --- !u!4 &1134396113
 Transform:
   m_ObjectHideFlags: 0
@@ -2799,11 +2802,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   enemyTags:
-  - SlimeWater
-  - SlimeMagma
-  - SlimeWind
   - Vampire
-  spawnInterval: 2
+  spawnInterval: 5
   minDistance: 10
   maxDistance: 12
   player: {fileID: 48909813}
@@ -3022,11 +3022,72 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3857985133468529115, guid: ec7c94ec4bb3d1349b6c9e45f8699c15, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 86cad8853d8f1024598eecc4ab3d1a51, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec7c94ec4bb3d1349b6c9e45f8699c15, type: 3}
+--- !u!1001 &5969536937126776843
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 856953173587824206, guid: 06793ec3877dfe2419092cc92fdf18bf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.27555
+      objectReference: {fileID: 0}
+    - target: {fileID: 856953173587824206, guid: 06793ec3877dfe2419092cc92fdf18bf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.92359
+      objectReference: {fileID: 0}
+    - target: {fileID: 856953173587824206, guid: 06793ec3877dfe2419092cc92fdf18bf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 856953173587824206, guid: 06793ec3877dfe2419092cc92fdf18bf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 856953173587824206, guid: 06793ec3877dfe2419092cc92fdf18bf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 856953173587824206, guid: 06793ec3877dfe2419092cc92fdf18bf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 856953173587824206, guid: 06793ec3877dfe2419092cc92fdf18bf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 856953173587824206, guid: 06793ec3877dfe2419092cc92fdf18bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 856953173587824206, guid: 06793ec3877dfe2419092cc92fdf18bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 856953173587824206, guid: 06793ec3877dfe2419092cc92fdf18bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196537554466307333, guid: 06793ec3877dfe2419092cc92fdf18bf, type: 3}
+      propertyPath: m_Name
+      value: VampireFireBall
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 06793ec3877dfe2419092cc92fdf18bf, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3042,3 +3103,4 @@ SceneRoots:
   - {fileID: 350118542}
   - {fileID: 1772265890}
   - {fileID: 951897355}
+  - {fileID: 5969536937126776843}

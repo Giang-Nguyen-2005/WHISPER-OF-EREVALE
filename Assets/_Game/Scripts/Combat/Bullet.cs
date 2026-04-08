@@ -5,23 +5,24 @@ using UnityEngine.Rendering.Universal;
 
 public class Bullet : MonoBehaviour, IPoolable
 {
-    public GunData data;
+    
     private float totalDamage;
     private float bulletSpeed;
-    public float lifeTime = 2.0f;
+    private float lifeTime;
     private LayerMask targetLayer;
 
-    public void Init(float damage, float speed,LayerMask target)
-    {
+    public void Init(float damage, float speed,LayerMask target, float life)
+    {   
         this.bulletSpeed =speed;
         this.totalDamage =damage;
         this.targetLayer=target;
+        this.lifeTime =life;
+        CancelInvoke();
+        Invoke("Deactivate", lifeTime);
     }
     public void OnSpawn()
     {
-    
-        CancelInvoke();
-        Invoke("Deactivate", lifeTime);// gọi hàm deactivate sau lifeTime  
+
     }
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -43,6 +44,6 @@ public class Bullet : MonoBehaviour, IPoolable
     // Update is called once per frame
     void Update()
     {
-        transform.position += transform.right * data.speed * Time.deltaTime;
+        transform.position += transform.right * bulletSpeed * Time.deltaTime;
     }
 }

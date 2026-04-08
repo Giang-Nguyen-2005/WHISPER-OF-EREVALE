@@ -19,5 +19,5 @@ MonoBehaviour:
   attackCooldown: 1.5
   contactDamage: 10
   stopDistance: 3
-  bulletTag: Bullet
-  bulletSpeed: 5
+  bulletTag: VampireFireBall
+  bulletSpeed: 1

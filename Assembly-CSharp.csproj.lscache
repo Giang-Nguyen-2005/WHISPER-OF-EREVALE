@@ -79,6 +79,7 @@ Assets/_Game/Scripts/Enemy/
  EnemyMovement.cs
  EnemySpawner.cs
  EnemyStats.cs
+ Event/EnemyAnimEvents.cs
  MeleeEnemy.cs
  RangedEnemy.cs
 Assets/_Game/Scripts/

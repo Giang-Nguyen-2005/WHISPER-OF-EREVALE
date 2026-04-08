@@ -12,6 +12,7 @@ TagManager:
   - SlimeWater
   - Vampire
   - ExpGem
+  - VampireFireBall
   layers:
   - Default
   - TransparentFX
