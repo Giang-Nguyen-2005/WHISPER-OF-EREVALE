@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeData
   upgradeName: Damage Upgrade
   description: + 20 DMG
-  icon: {fileID: -6218800866747058548, guid: ae52b5b628d2c7b41a572f1004169233, type: 3}
-  type: 1
+  icon: {fileID: 5733529238017492525, guid: c3c1a74ee3f445846921324580bfa5f7, type: 3}
+  modifier: {fileID: 11400000, guid: 8d532720b396ada4e86bfb87cb476c7c, type: 2}
   value: 20

@@ -13,6 +13,7 @@ TagManager:
   - Vampire
   - ExpGem
   - VampireFireBall
+  - Blue_Bullet
   layers:
   - Default
   - TransparentFX

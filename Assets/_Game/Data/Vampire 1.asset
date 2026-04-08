@@ -16,8 +16,9 @@ MonoBehaviour:
   maxHealth: 100
   baseSpeed: 1
   attackRange: 5
-  attackCooldown: 1.5
+  attackCooldown: 5
   contactDamage: 10
   stopDistance: 3
   bulletTag: VampireFireBall
-  bulletSpeed: 1
+  bulletSpeed: 3.5
+  bulletLifeTime: 6

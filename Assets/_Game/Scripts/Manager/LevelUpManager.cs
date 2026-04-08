@@ -55,17 +55,11 @@ public class LevelUpManager : MonoBehaviour
     }
     private void ApplyUpgradeEffect(UpgradeData data)
     {
-        switch (data.type)
+       if(data.modifier != null)
         {
-            case UpgradeData.UpgradeType.MoveSpeed:
-                player.movement.bonusSpeed += data.value;
-                break;
-            case UpgradeData.UpgradeType.FireRate:
-                player.combat.bonusFireRate -= data.value;
-                break;
-            case UpgradeData.UpgradeType.Damage:
-                player.combat.bonusDamage += Mathf.RoundToInt(data.value);
-                break;
+            data.modifier.Apply(player,data.value);
         }
+        levelUpPanel.SetActive(false);
+        Time.timeScale=1;
     }
 }

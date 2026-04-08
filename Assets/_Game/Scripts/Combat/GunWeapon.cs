@@ -6,6 +6,7 @@ public class GunWeapon : WeaponBase
     private PlayerManager player;
     private float nextAttackTime;
 
+    [SerializeField] private string tagBullet;
     private int currentAmmo;
     private bool isReloading = false;
 
@@ -27,7 +28,7 @@ public class GunWeapon : WeaponBase
         player.anim.SetShootBool(true);
 
         if (Time.time < nextAttackTime) return;
-        nextAttackTime = Time.time + data.fireRate + player.combat.bonusFireRate;
+        nextAttackTime = Time.time + (data.fireRate + player.combat.bonusFireRate);
 
 
         Shoot();
@@ -48,7 +49,7 @@ public class GunWeapon : WeaponBase
         float angle = Mathf.Atan2(player.movement.lastDirection.y, player.movement.lastDirection.x) * Mathf.Rad2Deg;
         Quaternion spawnRot = Quaternion.Euler(0, 0, angle);
 
-        GameObject bulletObj=ObjectPooler.Instance.GetFromPool("Bullet", spawnPos, spawnRot);
+        GameObject bulletObj=ObjectPooler.Instance.GetFromPool(tagBullet, spawnPos, spawnRot);
 
         if(bulletObj.TryGetComponent(out Bullet bullet))
         {

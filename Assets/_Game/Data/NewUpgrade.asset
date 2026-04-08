@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NewUpgrade
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeData
   upgradeName: "T\u0103ng FireRate"
-  description: +1 fireRate
+  description: +0.1 fireRate
   icon: {fileID: -4060339134492186001, guid: 3b6602bc54a07d74d96961ecaa2ffdf7, type: 3}
-  type: 2
+  modifier: {fileID: 11400000, guid: e9d536e1827251f458938851ce74d77e, type: 2}
   value: 0.1

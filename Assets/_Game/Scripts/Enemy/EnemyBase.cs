@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.AI;
@@ -13,11 +14,16 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable, IPoolable
     [SerializeField] protected Transform playerTransform;
     protected Rigidbody2D rb;
     protected Animator anim;
+
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
     public bool IsDead => isDead;
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         anim = GetComponentInChildren<Animator>();
+        if (spriteRenderer != null) originalColor = spriteRenderer.color;
     }
     public void OnSpawn()
     {
@@ -74,6 +80,8 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable, IPoolable
     {
         if (isDead) return;
         currentHealth -= dmg;
+        StopCoroutine(HitFlashRoutine());
+        StartCoroutine(HitFlashRoutine());
         if (currentHealth <= 0) Die();
         else anim.SetTrigger("Hurt");
     }
@@ -115,6 +123,14 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable, IPoolable
                 ////
             }
         }
+    }
+    private IEnumerator HitFlashRoutine()
+    {
+        spriteRenderer.color = new Color(2f, 2f, 2f, 1f);
+
+        yield return new WaitForSeconds(0.1f);
+
+        spriteRenderer.color = originalColor;
     }
     private void Deactivate() => gameObject.SetActive(false);
 

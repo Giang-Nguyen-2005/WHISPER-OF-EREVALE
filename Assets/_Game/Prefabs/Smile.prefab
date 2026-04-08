@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1224629041937126738}
   - component: {fileID: 2438781853639940834}
   - component: {fileID: 5833778207867261334}
+  - component: {fileID: 5231455707546918034}
   m_Layer: 0
   m_Name: Visuals_Smile
   m_TagString: Untagged
@@ -114,6 +115,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5231455707546918034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5678948739570139791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c82e8d239e77943be1cdcafc9300cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimEvents
 --- !u!1 &8286825824153503177
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,4 +238,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemy
   data: {fileID: 11400000, guid: aef4b76f49a0a1244afbcc173da00303, type: 2}
-  player: {fileID: 0}
+  playerTransform: {fileID: 0}

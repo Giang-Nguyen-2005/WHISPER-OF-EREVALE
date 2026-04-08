@@ -86,6 +86,7 @@ Assets/_Game/Scripts/
  Item/ExpGem.cs
  Manager/
   ExperienceManager.cs
+  GameManager.cs
   LevelUpManager.cs
   WaveSpawner.cs
  Player/
@@ -96,6 +97,11 @@ Assets/_Game/Scripts/
   PlayerMovement.cs
   PlayerVisuals.cs
  UI/UpgradeUI.cs
+ Upgrade/
+  DamageModifier.cs
+  FireRateModifier.cs
+  MoveSpeedModifier.cs
+  StatModifier.cs
  Utils/
   EnemyPooler.cs
   ObjectPooler.cs

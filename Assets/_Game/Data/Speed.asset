@@ -9,12 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f5458bf55e74bd4eb6c1f2cbc009156, type: 3}
-  m_Name: Vampire
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  actorName: 
-  maxHealth: 200
-  baseSpeed: 1
-  attackRange: 5
-  attackCooldown: 4
-  contactDamage: 10
+  m_Script: {fileID: 11500000, guid: 02edf89ff3572e34aada1f960549b546, type: 3}
+  m_Name: Speed
+  m_EditorClassIdentifier: Assembly-CSharp::MoveSpeedModifier

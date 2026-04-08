@@ -16,7 +16,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     void Start()
     {
         player = GetComponent<PlayerManager>();
-        currentHealth = data.maxHealth; 
+        currentHealth = data.maxHealth;
     }
 
     public void TakeDamage(int damage)
@@ -24,7 +24,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         if (isDead || isInvincible) return;
 
         currentHealth -= damage;
-        
+
         // Rung màn hình hoặc Flash màu trắng (Juice)
         StartCoroutine(HitFlashRoutine());
         if (currentHealth <= 0)
@@ -41,17 +41,31 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private IEnumerator InvincibilityRoutine()
     {
         isInvincible = true;
-        // Giang có thể làm nhân vật nhấp nháy ở đây
         yield return new WaitForSeconds(data.invincibilityDuration);
         isInvincible = false;
     }
 
     private IEnumerator HitFlashRoutine()
     {
-        // Đổi màu Sprite sang đỏ nhạt hoặc trắng để báo hiệu trúng đòn
-        player.anim.GetComponentInChildren<SpriteRenderer>().color = Color.red;
-        yield return new WaitForSeconds(0.1f);
-        player.anim.GetComponentInChildren<SpriteRenderer>().color = Color.white;
+        SpriteRenderer sr = player.anim.GetComponentInChildren<SpriteRenderer>();
+        Transform t = sr.transform;
+
+        Color originalColor = sr.color;
+        Vector3 originalScale = t.localScale;
+
+        // Flash trắng
+        sr.color = new Color(2f,2f,2f,1f);
+        t.localScale = originalScale * 1.15f;
+
+        yield return new WaitForSeconds(0.08f);
+
+        // Đỏ nhẹ
+        sr.color = new Color(2.4f, 0.6f, 0.6f, 1f);
+        t.localScale = originalScale;
+
+        yield return new WaitForSeconds(0.075f);
+
+        sr.color = originalColor;
     }
 
     private void Die()
@@ -63,5 +77,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         // Ngừng di chuyển
         player.rb.linearVelocity = Vector2.zero;
         this.enabled = false;
+        GameManager.Instance.EndGame();
     }
 }

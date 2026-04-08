@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 191179852473385888}
   - component: {fileID: 6773837636630260833}
   - component: {fileID: 5345782603008883793}
+  - component: {fileID: 5397841048775491328}
   m_Layer: 0
   m_Name: Visual_Slime_Magma
   m_TagString: Untagged
@@ -129,6 +130,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DebugPivot
   size: 0.5
   pivotColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &5397841048775491328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4246333585651288670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c82e8d239e77943be1cdcafc9300cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimEvents
 --- !u!1 &6272015177338957404
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemy
   data: {fileID: 11400000, guid: 8c64f112948d21d4c94e89653a540926, type: 2}
-  player: {fileID: 0}
+  playerTransform: {fileID: 0}
 --- !u!50 &5196837434851778749
 Rigidbody2D:
   serializedVersion: 5

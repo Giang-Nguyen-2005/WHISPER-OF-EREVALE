@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   actorName: 
-  maxHealth: 100
+  maxHealth: 50
   baseSpeed: 1.25
   walkSpeed: 1.5
   runSpeed: 2.2
-  dashSpeed: 5.2
+  dashSpeed: 8
   dashDuration: 0.18
-  invincibilityDuration: 1
+  invincibilityDuration: 0.5

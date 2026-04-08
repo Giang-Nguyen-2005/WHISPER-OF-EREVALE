@@ -6,7 +6,6 @@ public class UpgradeData : ScriptableObject
     public string upgradeName;
     [TextArea] public string description;
     public Sprite icon;
-    public enum UpgradeType {MoveSpeed, Damage ,FireRate, MaxHealth}
-    public UpgradeType type;
+    public StatModifier modifier;
     public float value;
 }

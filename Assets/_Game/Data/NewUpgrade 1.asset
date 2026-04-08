@@ -15,5 +15,5 @@ MonoBehaviour:
   upgradeName: Speed Upgrade
   description: + 0.3 speed
   icon: {fileID: -7479693365919530636, guid: e91ccea876a17344781864ffe46bd8db, type: 3}
-  type: 0
+  modifier: {fileID: 11400000, guid: 4828f85673ed85c44a5d77d91672bad1, type: 2}
   value: 0.3
