@@ -85,6 +85,7 @@ Assets/_Game/Scripts/Enemy/
 Assets/_Game/Scripts/
  Item/ExpGem.cs
  Manager/
+  AudioManager.cs
   ExperienceManager.cs
   GameManager.cs
   LevelUpManager.cs
@@ -96,7 +97,9 @@ Assets/_Game/Scripts/
   PlayerManager.cs
   PlayerMovement.cs
   PlayerVisuals.cs
- UI/UpgradeUI.cs
+ UI/
+  ExperienceUI.cs
+  UpgradeUI.cs
  Upgrade/
   DamageModifier.cs
   FireRateModifier.cs
@@ -381,6 +384,8 @@ Library/PackageCache/
  com.unity.nuget.mono-cecil@ecb9724e46ff/Mono.Cecil.dll
  com.unity.visualscripting@191c0d7e3b69/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll
 Library/ScriptAssemblies/
+ Cinemachine.dll
+ com.unity.cinemachine.editor.dll
  PPv2URPConverters.dll
  PsdPlugin.dll
  Unity.2D.Animation.Editor.dll

@@ -58,7 +58,8 @@ public class GunWeapon : WeaponBase
         }
 
         player.anim.TriggerShoot();
-        Debug.Log($"Ammo: {currentAmmo}/{data.magSize}");
+
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.shootSFX);
     }
 
     IEnumerator Reload()
@@ -66,6 +67,7 @@ public class GunWeapon : WeaponBase
         isReloading=true;
         player.GetComponentInChildren<Animator>().ResetTrigger("TriggerShoot");
         player.anim.SetReloadBool(true);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.reloadSFX);
         yield return new WaitForSeconds(data.reloadTime);
         currentAmmo =data.magSize;
         isReloading=false;
