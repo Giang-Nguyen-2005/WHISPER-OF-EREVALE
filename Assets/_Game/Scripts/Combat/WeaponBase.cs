@@ -8,4 +8,6 @@ public abstract class WeaponBase : MonoBehaviour
 
     public virtual void StopAttack() { }
     public virtual void OnAnimationAttackEvent() { }
+
+    public Sprite weaponIcon;
 }

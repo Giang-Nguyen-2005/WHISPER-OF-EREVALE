@@ -17,6 +17,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         player = GetComponent<PlayerManager>();
         currentHealth = data.maxHealth;
+        PlayerEvents.OnHealthChanged?.Invoke(currentHealth, data.maxHealth);
     }
 
     public void TakeDamage(int damage)
@@ -24,6 +25,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         if (isDead || isInvincible) return;
 
         currentHealth -= damage;
+        PlayerEvents.OnHealthChanged?.Invoke(currentHealth, data.maxHealth);
 
         // Rung màn hình hoặc Flash màu trắng (Juice)
         StartCoroutine(HitFlashRoutine());

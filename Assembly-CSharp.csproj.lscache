@@ -99,6 +99,7 @@ Assets/_Game/Scripts/
   PlayerVisuals.cs
  UI/
   ExperienceUI.cs
+  InGameHUD.cs
   UpgradeUI.cs
  Upgrade/
   DamageModifier.cs

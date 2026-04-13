@@ -60,6 +60,8 @@ public class GunWeapon : WeaponBase
         player.anim.TriggerShoot();
 
         AudioManager.Instance.PlaySFX(AudioManager.Instance.shootSFX);
+
+        PlayerEvents.OnAmmoChanged?.Invoke(currentAmmo, data.magSize);
     }
 
     IEnumerator Reload()
@@ -72,5 +74,7 @@ public class GunWeapon : WeaponBase
         currentAmmo =data.magSize;
         isReloading=false;
         player.anim.SetReloadBool(false);
+
+        PlayerEvents.OnAmmoChanged?.Invoke(currentAmmo, data.magSize);
     }
 }

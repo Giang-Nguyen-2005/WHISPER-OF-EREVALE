@@ -9,13 +9,13 @@ public class Bullet : MonoBehaviour, IPoolable
     private float totalDamage;
     private float bulletSpeed;
     private float lifeTime;
-    private LayerMask targetLayer;
+    private LayerMask ignoreLayer;
 
     public void Init(float damage, float speed,LayerMask target, float life)
     {   
         this.bulletSpeed =speed;
         this.totalDamage =damage;
-        this.targetLayer=target;
+        this.ignoreLayer=target;
         this.lifeTime =life;
         CancelInvoke();
         Invoke("Deactivate", lifeTime);
@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour, IPoolable
     void OnTriggerEnter2D(Collider2D other)
     {
         // Cần review lại hàm if này
-        if (((1 << other.gameObject.layer) & targetLayer) != 0) return;
+        if (((1 << other.gameObject.layer) & ignoreLayer) != 0) return;
         if (other.TryGetComponent(out IDamageable hitTarget))// nếu trúng đứa có IDamageable thì true
         {
             hitTarget.TakeDamage(Mathf.RoundToInt(totalDamage));

@@ -49,5 +49,6 @@ public class PlayerCombat : MonoBehaviour
     {
         player.anim.UpdateWeaponAnimation(0);
     }
+    PlayerEvents.OnWeaponChanged?.Invoke(newWeapon);
 }
 }
