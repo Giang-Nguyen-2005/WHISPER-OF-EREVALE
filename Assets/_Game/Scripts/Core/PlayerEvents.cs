@@ -10,4 +10,6 @@ public static class PlayerEvents
 
     public static Action<int,int> OnAmmoChanged;
     public static Action<WeaponBase> OnWeaponChanged;
+
+    public static Action<CameraShakeData> OnPlayerHit;
 }

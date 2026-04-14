@@ -26,8 +26,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         currentHealth -= damage;
         PlayerEvents.OnHealthChanged?.Invoke(currentHealth, data.maxHealth);
-
-        // Rung màn hình hoặc Flash màu trắng (Juice)
         StartCoroutine(HitFlashRoutine());
         if (currentHealth <= 0)
         {

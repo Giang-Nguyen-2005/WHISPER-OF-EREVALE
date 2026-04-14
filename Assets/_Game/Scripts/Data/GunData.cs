@@ -12,4 +12,6 @@ public class GunData : ScriptableObject
   public float timeReload = 1.5f;
   public float bulletLifeTime = 2f;
   public GameObject bulletPrefab;
+
+  public CameraShakeData fireShake;
 }

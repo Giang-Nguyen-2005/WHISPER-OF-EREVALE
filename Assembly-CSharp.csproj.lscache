@@ -58,14 +58,17 @@ Assets/_Game/Scripts/Combat/
  SpearWeapon.cs
  WeaponBase.cs
 Assets/_Game/Scripts/Core/
+ CameraShake.cs
  DebugPivot.cs
  IDamageable.cs
  InputHandler.cs
  IPoolable.cs
+ ManualCameraControl.cs
  PlayerEvents.cs
  PlayerInputReader.cs
 Assets/_Game/Scripts/Data/
  ActorData.cs
+ CameraShakeData.cs
  EnemyData.cs
  GunData.cs
  PlayerData.cs

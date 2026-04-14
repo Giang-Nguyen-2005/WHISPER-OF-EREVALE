@@ -10,13 +10,15 @@ public class Bullet : MonoBehaviour, IPoolable
     private float bulletSpeed;
     private float lifeTime;
     private LayerMask ignoreLayer;
+    private CameraShakeData shakeData;
 
-    public void Init(float damage, float speed,LayerMask target, float life)
+    public void Init(float damage, float speed,LayerMask target, float life,CameraShakeData shake = null)
     {   
         this.bulletSpeed =speed;
         this.totalDamage =damage;
         this.ignoreLayer=target;
         this.lifeTime =life;
+        this.shakeData = shake;
         CancelInvoke();
         Invoke("Deactivate", lifeTime);
     }
@@ -30,9 +32,14 @@ public class Bullet : MonoBehaviour, IPoolable
         if (((1 << other.gameObject.layer) & ignoreLayer) != 0) return;
         if (other.TryGetComponent(out IDamageable hitTarget))// nếu trúng đứa có IDamageable thì true
         {
+            if (other.CompareTag("Player") && shakeData != null)
+            {
+                PlayerEvents.OnPlayerHit?.Invoke(shakeData);
+            }
             hitTarget.TakeDamage(Mathf.RoundToInt(totalDamage));
             Deactivate();
         }
+        
     }
     void Deactivate()
     {

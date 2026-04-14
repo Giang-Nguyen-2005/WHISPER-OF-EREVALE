@@ -58,6 +58,7 @@ public class GunWeapon : WeaponBase
         }
 
         player.anim.TriggerShoot();
+        ManualCameraControl.Instance.RequestShake(data.fireShake);
 
         AudioManager.Instance.PlaySFX(AudioManager.Instance.shootSFX);
 

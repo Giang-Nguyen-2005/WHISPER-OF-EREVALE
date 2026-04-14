@@ -119,6 +119,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable, IPoolable
         {
             if (playerTransform.TryGetComponent(out IDamageable playerHealth))
             {
+                ManualCameraControl.Instance.RequestShake(data.shakeData);
                 playerHealth.TakeDamage(data.contactDamage);
                 ////
             }

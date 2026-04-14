@@ -7,4 +7,5 @@ public class EnemyData : ActorData
     public float attackRange = 1.5f;
     public float attackCooldown = 1.5f;
     public int contactDamage = 10;
+     public CameraShakeData shakeData;
 }

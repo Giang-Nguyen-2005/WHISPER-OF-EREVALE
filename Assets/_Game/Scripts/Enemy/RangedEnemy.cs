@@ -69,7 +69,7 @@ public class RangedEnemy : EnemyBase
         if (bulletObj.TryGetComponent(out Bullet bulletScpript))
         {
             LayerMask enemyLayer = LayerMask.GetMask("TargetSpear");
-            bulletScpript.Init(data.contactDamage, rangedData.bulletSpeed, enemyLayer, rangedData.bulletLifeTime);
+            bulletScpript.Init(data.contactDamage, rangedData.bulletSpeed, enemyLayer, rangedData.bulletLifeTime , data.shakeData);
         }
     }
     public override void PerformAttackLogic()

@@ -826,7 +826,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   sfxSource: {fileID: 59554370}
   musicSource: {fileID: 59554367}
-  backgroundMusic: {fileID: 8300000, guid: b61a946919be76c459433330d01a701e, type: 3}
+  backgroundMusic: {fileID: 0}
   shootSFX: {fileID: 8300000, guid: c7dd2c5f8f3536e488598fdb7890d9cf, type: 3}
   hitSFX: {fileID: 0}
   enemyDeathSFX: {fileID: 0}
@@ -861,7 +861,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.602
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1197,7 +1197,7 @@ RectTransform:
   m_GameObject: {fileID: 205107618}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5, y: 2, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 240642068}
@@ -1916,6 +1916,7 @@ GameObject:
   - component: {fileID: 519420030}
   - component: {fileID: 519420034}
   - component: {fileID: 519420035}
+  - component: {fileID: 519420036}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2010,7 +2011,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 7.1666665
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2097,6 +2098,23 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &519420036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 500331c7858a9f84b986cfc8c5da2156, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ManualCameraControl
+  playerTransform: {fileID: 48909813}
+  offset: {x: 0, y: 0, z: -10}
+  smoothTime: 0
+  mouseInfluence: 0.25
+  mainCam: {fileID: 519420031}
 --- !u!1 &604702946
 GameObject:
   m_ObjectHideFlags: 0
@@ -2148,7 +2166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9622642, g: 0.9622642, b: 0.9622642, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
