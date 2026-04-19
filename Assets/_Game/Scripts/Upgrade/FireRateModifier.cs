@@ -5,6 +5,13 @@ public class FireRateModifier : StatModifier
 {
     public override void Apply(PlayerManager player, float value)
     {
-        player.combat.bonusFireRate -= value;
+        if (operation == StatOperation.Add)
+        {
+            player.combat.bonusFireRate += value;
+        }
+        else if (operation == StatOperation.Multiply)
+        {
+            player.combat.bonusFireRate *= value;
+        }
     }
 }

@@ -18,6 +18,7 @@ MonoBehaviour:
   attackRange: 5
   attackCooldown: 5
   contactDamage: 10
+  shakeData: {fileID: 11400000, guid: aef2a067404c32041b0dcd30686b865b, type: 2}
   stopDistance: 3
   bulletTag: VampireFireBall
   bulletSpeed: 3.5

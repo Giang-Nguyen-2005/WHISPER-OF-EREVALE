@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Gun_Default_Data
   m_EditorClassIdentifier: Assembly-CSharp::GunData
   speed: 13
-  fireRate: 0.2
+  fireRate: 0.4
   damage: 50
   accuracy: 0
-  reloadTime: 1.5
-  magSize: 30
+  reloadTime: 1.25
+  magSize: 100
   timeReload: 2
   bulletLifeTime: 3
   bulletPrefab: {fileID: 2061008965260735171, guid: da95e4a903e070d4695a36e4428bc909, type: 3}
+  fireShake: {fileID: 11400000, guid: 7bf83a530c350474a92c6baba64648db, type: 2}

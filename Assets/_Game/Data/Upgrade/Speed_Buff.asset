@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 868b604f791b05140aa75b110cd36d56, type: 3}
+  m_Name: Speed_Buff
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeData
+  upgradeID: 03
+  upgradeName: "T\u0103ng t\u1ED1c \u0111\u1ED9"
+  icon: {fileID: 2243924377261594817, guid: 26711cfba5e2cde40989f521470b64c5, type: 3}
+  modifier: {fileID: 11400000, guid: bf3a2274cd1fa7848b95bf858fb804c9, type: 2}
+  maxLevel: 5
+  valuesPerLevel:
+  - 1.1
+  - 1.3
+  - 1.5
+  - 1.7
+  - 2
+  descriptionsPerLevel:
+  - "+ 10% t\u1ED1c \u0111\u1ED9"
+  - "+ 30% t\u1ED1c \u0111\u1ED9"
+  - "+ 50% t\u1ED1c \u0111\u1ED9"
+  - "+ 70% t\u1ED1c \u0111\u1ED9"
+  - "+ 100% t\u1ED1c \u0111\u1ED9"

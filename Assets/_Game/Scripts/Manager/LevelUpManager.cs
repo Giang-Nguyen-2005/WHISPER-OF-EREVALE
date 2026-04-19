@@ -13,6 +13,7 @@ public class LevelUpManager : MonoBehaviour
 
     [Header("Data")]
     [SerializeField] private List<UpgradeData> allUpgrades;
+    private Dictionary<string, int> playerUpgradeLevels = new Dictionary<string, int>();
 
     void OnEnable()
     {
@@ -27,39 +28,64 @@ public class LevelUpManager : MonoBehaviour
         Time.timeScale = 0;
         levelUpPanel.SetActive(true);
 
-        List<UpgradeData> selectedUpgrades = GetRandomUpgrades(upgradeButtons.Length);
+        // Lấy danh sách các nâng cấp chưa Max Level
+        List<UpgradeData> availablePool = allUpgrades.FindAll(u =>
+            !playerUpgradeLevels.ContainsKey(u.upgradeID) ||
+            playerUpgradeLevels[u.upgradeID] < u.maxLevel);
+
+        List<UpgradeData> selectedUpgrades = GetRandomUpgradesFromPool(availablePool, upgradeButtons.Length);
 
         for (int i = 0; i < upgradeButtons.Length; i++)
         {
-            upgradeButtons[i].Setup(selectedUpgrades[i], this);
+            if (i < selectedUpgrades.Count)
+            {
+                upgradeButtons[i].gameObject.SetActive(true);
+                // Gửi thêm thông tin Level tiếp theo để UI hiển thị
+                int nextLevel = GetNextLevel(selectedUpgrades[i]);
+                upgradeButtons[i].Setup(selectedUpgrades[i], this, nextLevel);
+            }
+            else upgradeButtons[i].gameObject.SetActive(false);
         }
     }
-    private List<UpgradeData> GetRandomUpgrades(int count)
+    private int GetNextLevel(UpgradeData data)
     {
-        List<UpgradeData> list = new List<UpgradeData>(allUpgrades);
-        List<UpgradeData> result = new List<UpgradeData>();
+        if (!playerUpgradeLevels.ContainsKey(data.upgradeID)) return 1;
+        return playerUpgradeLevels[data.upgradeID] + 1;
+    }
 
-        for (int i = 0; i < count && list.Count > 0; i++)
+    private List<UpgradeData> GetRandomUpgradesFromPool(List<UpgradeData> pool, int count)
+    {
+        List<UpgradeData> result = new List<UpgradeData>();
+        List<UpgradeData> tempPool = new List<UpgradeData>(pool);
+
+        for (int i = 0; i < count && tempPool.Count > 0; i++)
         {
-            int index = Random.Range(0, list.Count);
-            result.Add(list[index]);
-            list.RemoveAt(index);
+            int index = Random.Range(0, tempPool.Count);
+            result.Add(tempPool[index]);
+            tempPool.RemoveAt(index);
         }
         return result;
     }
+
     public void SelectUpgrade(UpgradeData data)
     {
+        // Tăng cấp độ trong Dictionary
+        if (!playerUpgradeLevels.ContainsKey(data.upgradeID)) playerUpgradeLevels.Add(data.upgradeID, 1);
+        else playerUpgradeLevels[data.upgradeID]++;
+
         ApplyUpgradeEffect(data);
+
         levelUpPanel.SetActive(false);
         Time.timeScale = 1;
     }
+
     private void ApplyUpgradeEffect(UpgradeData data)
     {
-       if(data.modifier != null)
+        if (data.modifier != null)
         {
-            data.modifier.Apply(player,data.value);
+            int currentLv = playerUpgradeLevels[data.upgradeID];
+            float valueToApply = data.GetValueForLevel(currentLv);
+            data.modifier.Apply(player, valueToApply);
         }
-        levelUpPanel.SetActive(false);
-        Time.timeScale=1;
     }
 }

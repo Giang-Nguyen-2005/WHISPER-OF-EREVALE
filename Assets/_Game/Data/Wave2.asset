@@ -16,4 +16,4 @@ MonoBehaviour:
   - enemyTag: Vampire
     enemyCount: 15
     spawnInterval: 0
-  timeAfterWave: 5
+  timeAfterWave: 20

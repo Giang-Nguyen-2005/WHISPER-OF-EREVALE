@@ -18,3 +18,4 @@ MonoBehaviour:
   attackRange: 0.7
   attackCooldown: 1
   contactDamage: 10
+  shakeData: {fileID: 11400000, guid: 6c1202db9c715f94e984df0bbba91872, type: 2}

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6941e5eab02e33f44b3c97f1ecd060c7, type: 3}
   m_Name: ShakeBullet
   m_EditorClassIdentifier: Assembly-CSharp::CameraShakeData
-  duration: 0
-  magnitude: 0
+  duration: 0.1
+  magnitude: 0.045

@@ -11,13 +11,38 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private PlayerManager player;
 
+    private float bonusMaxHealth =0;
+
     public bool IsDead => isDead;
+    public int GetTotalMaxHealth() => data.maxHealth + Mathf.RoundToInt(bonusMaxHealth);
 
     void Start()
     {
         player = GetComponent<PlayerManager>();
-        currentHealth = data.maxHealth;
-        PlayerEvents.OnHealthChanged?.Invoke(currentHealth, data.maxHealth);
+        currentHealth = GetTotalMaxHealth();
+        PlayerEvents.OnHealthChanged?.Invoke(currentHealth, GetTotalMaxHealth());
+    }
+
+    public void UpdateMaxHealth(float value, StatModifier.StatOperation op)
+    {
+        int oldMax = GetTotalMaxHealth();
+        
+        if (op == StatModifier.StatOperation.Add) 
+        {
+            bonusMaxHealth += value;
+        }
+        else if (op == StatModifier.StatOperation.Multiply) 
+        {
+            bonusMaxHealth = (oldMax * value) - data.maxHealth;
+        }
+
+        int healthIncrease = GetTotalMaxHealth() - oldMax;
+        if (healthIncrease > 0)
+        {
+            currentHealth += healthIncrease;
+        }
+        
+        PlayerEvents.OnHealthChanged?.Invoke(currentHealth, GetTotalMaxHealth());
     }
 
     public void TakeDamage(int damage)
@@ -25,7 +50,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         if (isDead || isInvincible) return;
 
         currentHealth -= damage;
-        PlayerEvents.OnHealthChanged?.Invoke(currentHealth, data.maxHealth);
+        PlayerEvents.OnHealthChanged?.Invoke(currentHealth, GetTotalMaxHealth());
         StartCoroutine(HitFlashRoutine());
         if (currentHealth <= 0)
         {

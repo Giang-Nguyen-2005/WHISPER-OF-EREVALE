@@ -28,7 +28,7 @@ public class GunWeapon : WeaponBase
         player.anim.SetShootBool(true);
 
         if (Time.time < nextAttackTime) return;
-        nextAttackTime = Time.time + (data.fireRate + player.combat.bonusFireRate);
+        nextAttackTime = Time.time + (data.fireRate - player.combat.bonusFireRate);
 
 
         Shoot();

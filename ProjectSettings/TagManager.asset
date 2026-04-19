@@ -14,6 +14,7 @@ TagManager:
   - ExpGem
   - VampireFireBall
   - Blue_Bullet
+  - FireBall
   layers:
   - Default
   - TransparentFX

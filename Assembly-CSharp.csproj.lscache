@@ -54,7 +54,11 @@ TemporaryDependencyNodeTargetIdentifier=netstandard2.1
 [sourceFiles]
 Assets/_Game/Scripts/Combat/
  Bullet.cs
+ FireballDamage.cs
  GunWeapon.cs
+ OrbitController.cs
+ SmiteController.cs
+ SmiteDamage.cs
  SpearWeapon.cs
  WeaponBase.cs
 Assets/_Game/Scripts/Core/
@@ -107,7 +111,10 @@ Assets/_Game/Scripts/
  Upgrade/
   DamageModifier.cs
   FireRateModifier.cs
+  HealthModifier.cs
   MoveSpeedModifier.cs
+  OrbitModifier.cs
+  SmiteModifier.cs
   StatModifier.cs
  Utils/
   EnemyPooler.cs
