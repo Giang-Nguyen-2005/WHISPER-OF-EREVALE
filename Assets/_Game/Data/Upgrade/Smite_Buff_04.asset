@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 868b604f791b05140aa75b110cd36d56, type: 3}
+  m_Name: Smite_Buff_04
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeData
+  upgradeID: smite_4
+  upgradeName: "T\u0103ng damage S\xE9t"
+  icon: {fileID: 366455611992627334, guid: 2655c17e794c8f04db4dc9b8640c77d1, type: 3}
+  modifier: {fileID: 11400000, guid: 316c5e51d3b7e3c4b9f3474450fe575f, type: 2}
+  requiredUpgradeID: smite_3
+  maxLevel: 1
+  valuesPerLevel:
+  - 0
+  descriptionsPerLevel:
+  - "T\u0103ng Damage cho tia s\xE9t"

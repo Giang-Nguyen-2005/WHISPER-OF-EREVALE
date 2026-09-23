@@ -36,7 +36,7 @@ public class SmiteController : MonoBehaviour
     private void CastSmite()
     {
         // Tìm trong 10m
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, 10f, enemyLayer);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, 15f, enemyLayer);
         
         if (hitEnemies.Length == 0) return; // return
 

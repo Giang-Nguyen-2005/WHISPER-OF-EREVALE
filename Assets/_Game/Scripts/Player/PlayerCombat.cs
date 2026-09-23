@@ -15,6 +15,8 @@ public class PlayerCombat : MonoBehaviour
 
     void Update()
     {
+        UltimateController ult = GetComponent<UltimateController>();
+        if (ult != null && ult.isUltimateActive) return;
         // 1. Đổi vũ khí dựa trên phím bấm từ InputHandler
         if (player.inputHandler.isWeapon1KeyDown) SwitchWeapon(null); // Tay không (animationID = 0)
         if (player.inputHandler.isWeapon2KeyDown) SwitchWeapon(spearWeapon); // Giáo (animationID = 1)

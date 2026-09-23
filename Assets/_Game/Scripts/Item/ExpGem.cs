@@ -39,5 +39,11 @@ public class ExpGem : MonoBehaviour, IPoolable
     {
         ExperienceManager.Instance.AddExperience(expAmount);
         gameObject.SetActive(false);
+        if (targetPlayer.TryGetComponent(out UltimateController ultimate))
+        {
+            ultimate.AddMana(5);
+        }
+
+        gameObject.SetActive(false);
     }
 }

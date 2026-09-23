@@ -30,8 +30,12 @@ public class LevelUpManager : MonoBehaviour
 
         // Lấy danh sách các nâng cấp chưa Max Level
         List<UpgradeData> availablePool = allUpgrades.FindAll(u =>
-            !playerUpgradeLevels.ContainsKey(u.upgradeID) ||
-            playerUpgradeLevels[u.upgradeID] < u.maxLevel);
+            // 1. Loại bỏ những thẻ đã Max Level
+            (!playerUpgradeLevels.ContainsKey(u.upgradeID) || playerUpgradeLevels[u.upgradeID] < u.maxLevel)
+            &&
+            // 2. NẾU thẻ có yêu cầu Thẻ trước đó -> Phải kiểm tra xem người chơi đã có thẻ đó chưa!
+            (string.IsNullOrEmpty(u.requiredUpgradeID) || playerUpgradeLevels.ContainsKey(u.requiredUpgradeID))
+        );
 
         List<UpgradeData> selectedUpgrades = GetRandomUpgradesFromPool(availablePool, upgradeButtons.Length);
 

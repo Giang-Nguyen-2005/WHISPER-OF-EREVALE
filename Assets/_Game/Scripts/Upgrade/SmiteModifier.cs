@@ -3,10 +3,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Upgrades/Effects/Divine Smite")]
 public class SmiteModifier : StatModifier
 {
-    [Header("Smite Settings")]
+    [Header("Smite Level Specific Changes")]
+    public int damageIncrease = 0;
     public float cooldownReduction = 0f;
-    public int bonusStrike = 0;        
-    public bool unlockChain = false; 
+    public int strikeIncrease = 0; 
+    public bool unlockChainLightning = false;
 
     public override void Apply(PlayerManager player, float value)
     {
@@ -14,14 +15,13 @@ public class SmiteModifier : StatModifier
         if (smite == null) return;
 
         if (!smite.isUnlocked) smite.isUnlocked = true;
-
-        if (operation == StatOperation.Add)
-        {
-            smite.baseDamage += Mathf.RoundToInt(value);
-            smite.cooldown += cooldownReduction;
-            smite.strikeCount += bonusStrike;
-            
-            if (unlockChain) smite.isChainLightning = true;
-        }
+    
+        smite.baseDamage += damageIncrease;
+        
+        smite.cooldown -= cooldownReduction; 
+        
+        smite.strikeCount += strikeIncrease;
+        
+        if (unlockChainLightning) smite.isChainLightning = true;
     }
 }

@@ -8,6 +8,7 @@ public class UpgradeData : ScriptableObject
     public string upgradeName;
     public Sprite icon;
     public StatModifier modifier;
+    public string requiredUpgradeID;
     [Header("Level Settings")]
     public int maxLevel=5;
     public float[] valuesPerLevel =new float[5];

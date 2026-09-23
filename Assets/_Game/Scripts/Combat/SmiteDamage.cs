@@ -10,7 +10,7 @@ public class SmiteDamage : MonoBehaviour
         damage = smiteDamage;
         player = pManager;
         
-        Destroy(gameObject, 0.23f); 
+        Destroy(gameObject, 0.28f); 
     }
 
     private void OnTriggerEnter2D(Collider2D other)

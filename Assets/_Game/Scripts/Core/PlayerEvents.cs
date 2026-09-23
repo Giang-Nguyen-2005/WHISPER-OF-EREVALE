@@ -12,4 +12,6 @@ public static class PlayerEvents
     public static Action<WeaponBase> OnWeaponChanged;
 
     public static Action<CameraShakeData> OnPlayerHit;
+
+    public static Action<int, int> OnManaChanged;
 }
